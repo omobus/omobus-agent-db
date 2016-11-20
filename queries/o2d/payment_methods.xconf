@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<payment_methods templ="%payment_method_id%;%descr%;">
+<begin>
+  <![CDATA[
+update payment_methods set hidden=1
+    where db_id = '%ErpCode%'
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) qty from payment_methods 
+    where payment_method_id = '%payment_method_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<update>
+  <![CDATA[
+update payment_methods set descr='%descr%', hidden=0 
+    where payment_method_id = '%payment_method_id%' and db_id = '%ErpCode%'
+  ]]>
+</update>
+<insert>
+  <![CDATA[
+insert into payment_methods (db_id, payment_method_id, descr, hidden) 
+    values ('%ErpCode%', '%payment_method_id%', '%descr%', 0)
+  ]]>
+</insert>
+</payment_methods>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TTD templ="%doc_id%;%ttd_dt%;" empty="no">
+  <![CDATA[
+select doc_id, convert(varchar(19), inserted_ts, 121) ttd_dt from orders 
+    where (0=(select case when param_value='onerpid' then 1 else 0 end from sysparams where param_id='ttd') or erp_id is not null)
+    group by doc_id, inserted_ts
+    union
+select doc_id, convert(varchar(19), inserted_ts, 121) ttd_dt from reclamations
+    where (0=(select case when param_value='onerpid' then 1 else 0 end from sysparams where param_id='ttd') or erp_id is not null)
+    group by doc_id, inserted_ts
+    union
+select doc_id, convert(varchar(19), inserted_ts, 121) ttd_dt from comments
+    where (0=(select case when param_value='onerpid' then 1 else 0 end from sysparams where param_id='ttd') or erp_id is not null)
+    union
+select doc_id, convert(varchar(19), inserted_ts, 121) ttd_dt from receipts
+    where (0=(select case when param_value='onerpid' then 1 else 0 end from sysparams where param_id='ttd') or erp_id is not null)
+order by 1, 2
+  ]]>
+</TTD>

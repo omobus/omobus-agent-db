@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kernel 
+    module="kern_upload" 
+    ldap.uri="ldap://127.0.0.1:389" 
+    ldap.bind_dn="uid=omobus-agentd,ou=services,dc=omobus,dc=local"
+    ldap.bind_pw="0"
+    ldap.base="ou=proxy-storages,dc=omobus,dc=local" 
+    ldap.filter="(&amp;(objectClass=omobusMaintainPoint)(exchangeStatus=enabled))" 
+    Xldap.tls="yes"
+    ftp.host="dummy.omobus.net"
+    ftp.port="21021"
+    ftp.path="o2d/"
+    ftp.connect_timeout="30"
+    ftp.recv_timeout="15"
+    ftp.send_timeout="15"
+    ftp.epsv="true"
+    pk.cache="omobus2distributor/"
+    pk.enc="utf-8"
+    pk.gc="4"
+    >
+<xi:include href="../queries/o2d/trig_after.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+<xi:include href="../queries/o2d/attributes.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/comments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/comment_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/new_accounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/new_account_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/order_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/payment_methods.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/receipts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/receipt_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/reclamations.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/o2d/reclamation_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+</kernel>

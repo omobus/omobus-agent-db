@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<symlinks templ="%obj_code%;%f_id%;%t_id%;%extra_info%;" empty="no">
+  <![CDATA[
+select db_id person_id, obj_code, f_id, t_id, extra_info from symlinks
+    where reverse = 1 and obj_code <> '' and f_id <> '' and t_id <> '' and t_id is not null
+order by 1, 2
+  ]]> 
+</symlinks>

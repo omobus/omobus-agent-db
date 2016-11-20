@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<receipts templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%receipt_type_id%;%doc_note%;%amount%;">
+<check_exist>
+  <![CDATA[
+select count(*) qty from receipts 
+    where doc_id = '%doc_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<insert>
+  <![CDATA[
+insert into receipts (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, account_id, receipt_type_id, doc_note, amount) 
+    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%account_id%', '%receipt_type_id%', '%doc_note%', '%amount%')
+  ]]>
+</insert>
+</receipts>

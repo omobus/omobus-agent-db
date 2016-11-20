@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<std_prices templ="%prod_id%;%pack_id%;%price%;">
+  <![CDATA[
+select prod_id, pack_id, price from std_prices
+    order by 1, 2
+  ]]>
+</std_prices>

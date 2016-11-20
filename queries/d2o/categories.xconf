@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<categories templ="%categ_id%;%descr%;" empty="no">
+  <![CDATA[
+select categ_id, descr from categories
+    order by 1
+  ]]> 
+</categories>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<attributes templ="%attr_id%;%descr%;">
+<begin>
+  <![CDATA[
+update attributes set hidden=1
+    where db_id = '%ErpCode%'
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) qty from attributes 
+    where attr_id = '%attr_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<update>
+  <![CDATA[
+update attributes set descr='%descr%', hidden=0 
+    where attr_id = '%attr_id%' and db_id = '%ErpCode%'
+  ]]>
+</update>
+<insert>
+  <![CDATA[
+insert into attributes (db_id, attr_id, descr, hidden) 
+    values ('%ErpCode%', '%attr_id%', '%descr%', 0)
+  ]]>
+</insert>
+</attributes>

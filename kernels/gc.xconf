@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kernel module="kern_task">
+<gc>
+  <![CDATA[
+declare @offset int
+select @offset=cast(param_value as int) from sysparams where param_id='gc:keep_alive'
+/* cleanup obsolete documents */
+delete from comments where inserted_ts < (getdate() - @offset) and erp_id is not null
+delete from orders where inserted_ts < (getdate() - @offset) and erp_id is not null
+delete from receipts where inserted_ts < (getdate() - @offset) and erp_id is not null
+delete from reclamations where inserted_ts < (getdate() - @offset) and erp_id is not null
+  ]]>
+</gc>
+</kernel>

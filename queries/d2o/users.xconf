@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<users templ="%user_id%;%pid%;%ftype%;%descr%;%code%;%role%;%dep_id%;" empty="no">
+  <![CDATA[
+select user_id, pid, ftype, descr, code, role, null dep_id from users
+    order by 1
+  ]]>
+</users>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<order_params templ="%order_param_id%;%descr%;">
+  <![CDATA[
+select order_param_id, descr from order_params
+    order by 1
+  ]]>
+</order_params>

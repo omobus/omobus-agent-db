@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<potentials templ="%poten_id%;%descr%;" empty="no">
+  <![CDATA[
+select poten_id, descr from potentials
+    order by 1
+  ]]> 
+</potentials>

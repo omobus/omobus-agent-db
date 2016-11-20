@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stocks_history templ="%wareh_id%;%prod_id%;%s_date%;%damaged%;%b_qty%;%e_qty%;%i_qty%;%o_qty%;" empty="no">
+  <![CDATA[
+select wareh_id, prod_id, s_date, damaged, b_qty, e_qty, i_qty, o_qty from stocks_history
+    order by 1, 2, 3, 4
+  ]]>
+</stocks_history>

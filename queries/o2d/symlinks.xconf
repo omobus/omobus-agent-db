@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<symlinks templ="%obj_code%;%f_id%;%t_id%;%extra_info%;">
+<begin>
+  <![CDATA[
+delete from symlinks
+    where db_id = '%ErpCode%' and reverse = 0
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) qty from symlinks
+    where obj_code = '%obj_code%' and f_id = '%f_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<insert>
+  <![CDATA[
+insert into symlinks (db_id, obj_code, f_id, t_id, extra_info, reverse) 
+    values ('%ErpCode%', '%obj_code%', '%f_id%', '%t_id%', '%extra_info%', 0)
+  ]]>
+</insert>
+</symlinks>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mutuals_history_products templ="%erp_id%;%prod_id%;%pack_id%;%qty%;%discount%;%amount%;" empty="no">
+  <![CDATA[ 
+select erp_id, prod_id, pack_id, qty, amount, discount from mutuals_history_products
+    order by 1, 2
+  ]]>
+</mutuals_history_products>

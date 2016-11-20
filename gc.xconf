@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<omobusd mode="cycle" cycle.timeout="28800" cycle.connection_life="0">
+    <xi:include href="connections/agent-db.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+    <xi:include href="transactions/write.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+    <xi:include href="kernels/gc.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+</omobusd>

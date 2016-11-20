@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group_prices templ="%group_price_id%;%prod_id%;%pack_id%;%price%;" empty="no">
+  <![CDATA[ 
+select group_price_id, prod_id, pack_id, price from group_prices
+    order by 1, 2
+  ]]>
+</group_prices>

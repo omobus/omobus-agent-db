@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<trig_after>
+  <![CDATA[ 
+exec sp_trig_o2d /* point: %uid%, %ErpCode%, %hostname% */
+  ]]>
+</trig_after>

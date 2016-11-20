@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reclamations templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%return_date%;%doc_note%;%rows%;%prod_id%;%row_no%;%reclamation_type_id%;%pack_id%;%pack%;%qty%;%unit_price%;%amount%;%weight%;%volume%;">
+<check_exist>
+  <![CDATA[
+select count(*) qty from reclamations 
+    where doc_id = '%doc_id%' and prod_id = '%prod_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<insert>
+  <![CDATA[
+insert into reclamations (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, account_id, return_date, doc_note, rows, prod_id, row_no, reclamation_type_id, pack_id, pack, qty, unit_price, amount, weight, volume) 
+    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%account_id%', '%return_date%', '%doc_note%', %rows%, '%prod_id%', %row_no%, '%reclamation_type_id%', '%pack_id%', %pack%, %qty%, %unit_price%, %amount%, %weight%, %volume%)
+  ]]>
+</insert>
+</reclamations>

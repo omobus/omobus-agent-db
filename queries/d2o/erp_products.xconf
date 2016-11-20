@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<erp_products templ="%doc_id%;%erp_id%;%prod_id%;%pack_id%;%qty%;%discount%;%amount%;%price%;%vat%;" empty="no">
+  <![CDATA[
+select doc_id, erp_id, prod_id, pack_id, qty, discount, amount, price, vat from erp_products
+    order by 1, 2, 3
+  ]]>
+</erp_products>

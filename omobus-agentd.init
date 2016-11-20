@@ -1,0 +1,160 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          omobus-agentd
+# Required-Start:    $remote_fs $network $syslog
+# Required-Stop:     $remote_fs $network $syslog
+# Should-Start:      slapd
+# Should-Stop:       slapd
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: OMOBUS agent (omobus-agentd)
+# Description:       OMOBUS agent (omobus-agentd)
+### END INIT INFO
+
+# This file is a part of the omobus-agent-db project.
+# Copyright (c) 2006 - 2016 ak-obs, Ltd. <info@omobus.net>.
+# Author: Igor Artemov <i_artemov@ak-obs.ru>.
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/sbin/omobus-agentd
+DAEMON_UID=omobus
+DAEMON_GID=omobus
+RUN_PATH=/var/run/omobus-agent.d
+LOCK_PATH=/var/lock/omobus-agent.d
+LOG_PATH=/var/log/omobus-agent.d
+CACHE_PATH=/var/cache/omobus-agent.d
+HOME_PATH=/var/lib/omobus-agent.d
+
+set -e
+
+if test -f /etc/default/omobus-agentd; then
+    . /etc/default/omobus-agentd
+fi
+
+. /lib/lsb/init-functions
+
+if [ ! -x ${DAEMON} ]; then
+  echo "OMOBUS agent is not installed!"
+  exit 5
+fi
+
+mkdir_r() {
+    mkdir -p $1 && chown -f $DAEMON_UID:$DAEMON_GID $1 && chmod 700 $1
+}
+
+mkdir_r $RUN_PATH
+mkdir_r $LOCK_PATH
+mkdir_r $LOG_PATH
+mkdir_r $CACHE_PATH
+mkdir_r $HOME_PATH
+
+tmp_isrunning=""
+is_running() { 
+    local pid=""
+    tmp_isrunning=""
+    if [ -f "$1" ]; then
+	pid=`cat "$1" 2> /dev/null`
+	if [ "$pid" != "" ]; then
+	    if [ -d /proc/$pid ]; then
+		tmp_isrunning=$pid
+	    fi
+	fi
+    fi
+}
+
+start_instance() {
+    local INAME=$1
+    local SVCNAME=omobus-agent-$1
+    local PIDFILE=$RUN_PATH/$SVCNAME.pid
+
+    log_daemon_msg "$SVCNAME start/running"
+    is_running $PIDFILE
+    if [ "$tmp_isrunning" != "" ]; then
+	log_end_msg 1 || true
+    else
+	$DAEMON $INAME -u $DAEMON_UID -g $DAEMON_GID $SILENT -p $PIDFILE
+	sleep 1 ## wait starting
+	is_running $PIDFILE
+	if [ "$tmp_isrunning" != "" ]; then
+	    log_end_msg 0 || true
+	else
+	    log_end_msg 1 || true
+	fi
+    fi
+}
+
+stop_instance() {
+    local INAME=$1
+    local SVCNAME=omobus-agent-$1
+    local PIDFILE=$RUN_PATH/$SVCNAME.pid
+    local pid=0
+
+    log_daemon_msg "$SVCNAME stop/shutting down"
+    if [ -f "$PIDFILE" ]; then
+	pid=`cat "$PIDFILE" 2> /dev/null`
+	if [ -d /proc/$pid ]; then
+	    kill -s USR1 $pid
+	else
+	    rm $PIDFILE
+	fi
+	log_end_msg 0 || true
+    else
+	log_end_msg 1 || true
+    fi
+}
+
+status_instance() {
+    local INAME=$1
+    local SVCNAME=omobus-agent-$1
+    local PIDFILE=$RUN_PATH/$SVCNAME.pid
+
+    is_running $PIDFILE
+    if [ "$tmp_isrunning" != "" ]; then
+	log_daemon_msg "$SVCNAME status/running, process $tmp_isrunning."
+    else
+	log_failure_msg "$SVCNAME status/NOT running."
+    fi
+}
+
+case "$1" in
+    start)
+        if [ -z "$2" ]; then
+	    for i in $INSTANCES; do start_instance $i; done
+	else
+	    start_instance $2
+	fi
+      	;;
+
+    stop)
+        if [ -z "$2" ]; then
+	    for i in $INSTANCES; do stop_instance $i; done
+	else
+	    stop_instance $2
+	fi
+        ;;
+
+    restart)
+	$0 stop $2
+	sleep 10
+	$0 start $2
+	$0 status $2
+        ;;
+
+    status)
+	if [ -z "$2" ]; then
+	    for i in $INSTANCES; do status_instance $i; done
+	else
+	    status_instance $2
+	fi
+	;;
+
+    *)
+	echo "OMOBUS agent startup script."
+        echo "Usage: $0 {start|stop|restart|status} [$INSTANCES]"
+        echo "Copyright (c) 2006 - 2016 ak obs, ltd. <info@omobus.net>."
+        echo
+        exit 1
+        ;;
+esac
+
+exit 0

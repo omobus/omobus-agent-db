@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<reclamation_types templ="%reclamation_type_id%;%descr%;">
+<begin>
+  <![CDATA[
+update reclamation_types set hidden=1
+    where db_id = '%ErpCode%'
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) qty from reclamation_types 
+    where reclamation_type_id = '%reclamation_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<update>
+  <![CDATA[
+update reclamation_types set descr='%descr%', hidden=0 
+    where reclamation_type_id = '%reclamation_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</update>
+<insert>
+  <![CDATA[
+insert into reclamation_types (db_id, reclamation_type_id, descr, hidden) 
+    values ('%ErpCode%', '%reclamation_type_id%', '%descr%', 0)
+  ]]>
+</insert>
+</reclamation_types>

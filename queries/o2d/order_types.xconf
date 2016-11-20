@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<order_types templ="%order_type_id%;%descr%;">
+<begin>
+  <![CDATA[
+update order_types set hidden=1
+    where db_id = '%ErpCode%'
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) qty from order_types 
+    where order_type_id = '%order_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<update>
+  <![CDATA[
+update order_types set descr='%descr%', hidden=0 
+    where order_type_id = '%order_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</update>
+<insert>
+  <![CDATA[
+insert into order_types (db_id, order_type_id, descr, hidden) 
+    values ('%ErpCode%', '%order_type_id%', '%descr%', 0)
+  ]]>
+</insert>
+</order_types>

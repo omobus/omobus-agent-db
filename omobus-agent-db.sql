@@ -234,7 +234,7 @@ create table mutuals_history_products (
 );
 
 create table order_params (
-    order_param_id 		uid_t 		not null primary key,
+    order_param_id 	uid_t 		not null primary key,
     descr 		descr_t 	not null
 );
 
@@ -267,8 +267,7 @@ create table products (
     shelf_life 		descr_t 	null,
     obsolete 		bool_t 		null,
     novelty 		bool_t 		null,
-    promo 		bool_t 		null,
-    note 		varchar(4096) 	null
+    promo 		bool_t 		null
 );
 
 create table refunds ( /* percentage of returned products */
@@ -467,7 +466,7 @@ create table orders (
     payment_method_id 	uid_t 		null,
     payment_delay 	int32_t 	null check (payment_delay is null or (payment_delay >= 0)),
     bonus 		int32_t 	null check (bonus is null or (bonus >= 0)),
-    order_param_ids 		uids_t		null, /* order_params array; delimiter ',' */
+    order_param_ids 	uids_t		null, /* order_params array; delimiter ',' */
     rows 		int32_t 	not null,
     prod_id 		uid_t 		not null,
     row_no 		int32_t 	not null check (row_no >= 0),

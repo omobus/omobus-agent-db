@@ -541,13 +541,14 @@ create table symlinks (
 );
 
 create table sysmeta(
-    f_tab 		varchar(64) 	not null,
-    f_col 		varchar(64) 	null,
-    t_tab 		varchar(64) 	not null,
-    t_col 		varchar(64) 	null,
-    u 			bool_t 		not null default 0,
-    i			bool_t 		not null default 0,
-    primary key(f_tab, t_tab)
+	ext_tab   varchar(64) null,
+	ext_col   varchar(64) null,
+	int_tab   varchar(64) null,
+	int_col   varchar(64) null,
+	u bool_t          not null default 0,
+	i bool_t          not null default 0,
+	doc_type  doctype_t   null,
+	erp_descr descr_t     null
 );
 
 create table sysparams (

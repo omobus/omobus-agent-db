@@ -48,7 +48,7 @@ alter database "omobus-agent-db" set QUOTED_IDENTIFIER on
 alter database "omobus-agent-db" set concat_null_yields_null on
 go
 -- **** mssql 2005 and higher ****
-alter database "omobus-agent-db" SET ALLOW_SNAPSHOT_ISOLATION on
+alter database "omobus-agent-db" set ALLOW_SNAPSHOT_ISOLATION on
 go
 
 
@@ -69,7 +69,6 @@ execute sp_addtype int32_t, 'int'
 execute sp_addtype int64_t, 'numeric(10)'
 execute sp_addtype note_t, 'varchar(1024)'
 execute sp_addtype numeric_t, 'numeric(16,4)'
-execute sp_addtype pid_t, 'varchar(32)'
 execute sp_addtype time_t, 'varchar(5)'
 execute sp_addtype ts_t, 'datetime'
 execute sp_addtype uid_t, 'varchar(48)'
@@ -84,7 +83,7 @@ go
 
 create table accounts (
     account_id 		uid_t 		not null primary key,
-    pid 		pid_t 		null,
+    pid 		uid_t 		null,
     code 		code_t 		null,
     ftype 		ftype_t 	not null default 0,
     descr 		descr_t 	not null,
@@ -256,7 +255,7 @@ create table potentials (
 
 create table products (
     prod_id 		uid_t 		not null primary key,
-    pid 		pid_t 		null,
+    pid 		uid_t 		null,
     ftype 		ftype_t 	not null default 0,
     manuf_id 		uid_t 		null,
     brand_id 		uid_t 		null,
@@ -540,15 +539,15 @@ create table symlinks (
     primary key(db_id, obj_code, f_id)
 );
 
-create table sysmeta(
-	ext_tab   varchar(64) null,
-	ext_col   varchar(64) null,
-	int_tab   varchar(64) null,
-	int_col   varchar(64) null,
-	u bool_t          not null default 0,
-	i bool_t          not null default 0,
-	doc_type  doctype_t   null,
-	erp_descr descr_t     null
+create table sysmeta( /* without primary key */
+    ext_tab 		varchar(64) 	null,
+    ext_col 		varchar(64) 	null,
+    int_tab 		varchar(64) 	null,
+    int_col 		varchar(64) 	null,
+    u 			bool_t 		not null default 0,
+    i 			bool_t 		not null default 0,
+    doc_type 		doctype_t 	null,
+    erp_descr 		descr_t 	null
 );
 
 create table sysparams (

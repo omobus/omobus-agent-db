@@ -41,6 +41,16 @@
 
 set QUOTED_IDENTIFIER on
 go
+create login omobus with password = '0'
+go
+create user omobus for login omobus
+go
+create database "omobus-agent-db"
+go
+use "omobus-agent-db"
+go
+sp_changedbowner 'omobus'
+go
 alter database "omobus-agent-db" set ANSI_NULL_DEFAULT on
 alter database "omobus-agent-db" set ANSI_NULLS on
 alter database "omobus-agent-db" set ANSI_PADDING on

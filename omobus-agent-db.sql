@@ -1,5 +1,5 @@
 /* This file is a part of the omobus-agent-db project.
- * Copyright (c) 2006 - 2016 ak-obs, Ltd. <info@omobus.net>.
+ * Copyright (c) 2006 - 2017 ak-obs, Ltd. <info@omobus.net>.
  * All rights reserved.
  *
  * This program is a free software. Redistribution and use in source
@@ -623,7 +623,7 @@ as
 begin
     SET NOCOUNT ON;
     SET ANSI_PADDING ON;
-    if omobus.sp_obj_checklock() > 0
+    if dbo.sp_obj_checklock() > 0
 	print 'ERP is locked!'
 --* else
 --* begin
@@ -638,7 +638,7 @@ as
 begin
     SET NOCOUNT ON;
     SET ANSI_PADDING ON;
-    if omobus.sp_obj_checklock() > 0
+    if dbo.sp_obj_checklock() > 0
 	print 'ERP is locked!'
 --* else
 --* begin
@@ -653,7 +653,7 @@ as
 begin
     SET NOCOUNT ON;
     SET ANSI_PADDING ON;
-    if omobus.sp_obj_checklock() > 0
+    if dbo.sp_obj_checklock() > 0
 	print 'ERP is locked!'
 --* else
 --* begin

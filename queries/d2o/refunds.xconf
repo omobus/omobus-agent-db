@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<refunds templ="%account_id%;%prod_id%;%percentage%;" empty="no">
+<refunds templ="%account_id%;%prod_id%;%pack_id%;%price%;%locked%;%max_qty%;%percentage%;" empty="no">
   <![CDATA[
-select account_id, prod_id, percentage from refunds
+select account_id, prod_id, pack_id, price, locked, max_qty, percentage from refunds
     order by 1, 2
   ]]>
 </refunds>

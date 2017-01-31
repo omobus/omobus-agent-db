@@ -283,10 +283,10 @@ create table refunds ( /* percentage of returned products */
     account_id 		uid_t  		not null,
     prod_id    		uid_t  		not null,
     pack_id 		uid_t 		not null,
-    price 		currency_t 	not null check (price >= 0),
+    price 		currency_t 	null check (price is null or price >= 0),
     max_qty 		numeric_t      	null check (max_qty is null or (max_qty >= 0)),
     locked 		bool_t 		null default 0,
-    percentage 		numeric(7,1) 	not null, /* returns percentage = reclamations/sales*100 */
+    percentage 		numeric(7,1) 	null, /* returns percentage = reclamations/sales*100 */
     primary key (account_id, prod_id)
 );
 

@@ -3,7 +3,7 @@
 # Author: Igor Artemov <i_artemov@ak-obs.ru>.
 
 PACKAGE_NAME 	= omobus-agent-db
-PACKAGE_VERSION = 3.3.9
+PACKAGE_VERSION = 3.3.10
 COPYRIGHT 	= Copyright (c) 2006 - 2017 ak obs, ltd. <info@omobus.net>
 SUPPORT 	= Support and bug reports: <support@omobus.net>
 AUTHOR		= Author: Igor Artemov <i_artemov@ak-obs.ru>

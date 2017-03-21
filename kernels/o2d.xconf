@@ -14,7 +14,7 @@
     ftp.recv_timeout="15"
     ftp.send_timeout="15"
     ftp.epsv="true"
-    pk.cache="omobus2distributor/"
+    pk.cache="o2d/"
     pk.enc="utf-8"
     pk.gc="4"
     >

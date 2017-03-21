@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wareh_stocks templ="%wareh_id%;%prod_id%;%qty%;">
+<wareh_stocks templ="%wareh_id%;%prod_id%;%qty%;" empty="no">
   <![CDATA[ 
 select wareh_id, prod_id, qty from wareh_stocks
     where qty > 0

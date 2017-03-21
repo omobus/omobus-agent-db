@@ -14,12 +14,12 @@
     ftp.recv_timeout="15"
     ftp.send_timeout="15"
     ftp.epsv="true"
-    pk.cache="distributor2omobus/"
+    pk.cache="d2o/"
     pk.mode="bz2"
     pk.compress_level="9"
     Xpk.enc="utf-8"
     pk.diff="yes"
-    pk.thr="3"
+    Xpk.thr="3"
     >
 <queries>
 <xi:include href="../queries/d2o/TTD.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />

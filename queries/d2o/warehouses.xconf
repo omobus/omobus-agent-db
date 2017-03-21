@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<warehouses templ="%wareh_id%;%descr%;">
+<warehouses templ="%wareh_id%;%descr%;" empty="no">
   <![CDATA[ 
 select wareh_id, descr from warehouses
     order by 1

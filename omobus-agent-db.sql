@@ -279,14 +279,14 @@ create table products (
     promo 		bool_t 		null
 );
 
-create table refunds ( /* percentage of returned products */
+create table refunds ( 
     account_id 		uid_t  		not null,
     prod_id    		uid_t  		not null,
     pack_id 		uid_t 		not null,
     price 		currency_t 	null check (price is null or price >= 0),
     max_qty 		numeric_t      	null check (max_qty is null or (max_qty >= 0)),
     locked 		bool_t 		null default 0,
-    percentage 		numeric(7,1) 	null, /* returns percentage = reclamations/sales*100 */
+    percentage 		numeric(7,1) 	null, /* percentage of returned products */
     primary key (account_id, prod_id)
 );
 
@@ -381,6 +381,15 @@ create table attributes (
     primary key (db_id, attr_id)
 );
 
+create table comment_types (
+    db_id 		uid_t 		not null,
+    comment_type_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, comment_type_id)
+);
+
 create table new_account_types (
     db_id 		uid_t 		not null,
     new_account_type_id uid_t 		not null,
@@ -425,7 +434,6 @@ create table reclamation_types (
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, reclamation_type_id)
 );
-
 
 create table comments (
     db_id 		uid_t 		not null,

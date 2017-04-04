@@ -100,8 +100,7 @@ create table accounts (
     address 		address_t 	not null,
     rc_id 		uid_t		null, 		/* -> retail_chains */
     chan_id 		uid_t 		null,
-    poten_id 		uid_t 		null,
-    locked 		bool_t 		null
+    poten_id 		uid_t 		null
 );
 
 create table account_params (

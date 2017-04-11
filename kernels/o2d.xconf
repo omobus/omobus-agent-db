@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<kernel 
-    module="kern_upload" 
+<kernel
+    module="kern_import"
     ldap.uri="ldap://127.0.0.1:389" 
-    ldap.bind_dn="uid=omobus-agentd,ou=services,dc=omobus,dc=local"
+    ldap.bind_dn="uid=omobusd,ou=services,dc=omobus,dc=local"
     ldap.bind_pw="0"
     ldap.base="ou=proxy-storages,dc=omobus,dc=local" 
     ldap.filter="(&amp;(objectClass=omobusMaintainPoint)(exchangeStatus=enabled))" 
@@ -13,10 +13,13 @@
     ftp.connect_timeout="30"
     ftp.recv_timeout="15"
     ftp.send_timeout="15"
-    ftp.epsv="true"
-    pk.cache="o2d/"
-    pk.enc="utf-8"
-    pk.gc="4"
+    ftp.epsv="yes"
+    ftp.tls="no"
+    ftp.ccc="no"
+    ftp.cdc="no"
+    Xpack.encoding="utf-8"
+    pack.gc="4"
+    cache="o2d/"
     >
 <xi:include href="../queries/o2d/trig_after.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/o2d/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />

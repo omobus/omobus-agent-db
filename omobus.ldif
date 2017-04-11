@@ -14,14 +14,14 @@ ou: services
 description:: 0J/QsNGA0LDQvNC10YLRgNGLINC00LXQvNC+0L3QvtCyINGB0LXRgNCy0LXRgN
  CwLg==
 
-dn: uid=omobus-agentd,ou=services,dc=omobus,dc=local
+dn: uid=omobusd,ou=services,dc=omobus,dc=local
 objectClass: account
 objectClass: top
 objectClass: posixAccount
 cn: OMOBUS daemon
 gidNumber: 905
 homeDirectory: /var/lib/omobus.d
-uid: omobus-agentd
+uid: omobusd
 uidNumber: 902
 userPassword:: e1NTSEF9dkhOUmxBbkdYZEs2U1lZNjlWY2kwWlpDaUgwMEw3MVpKYlduQkE9P
  Q==

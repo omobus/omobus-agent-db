@@ -2,7 +2,7 @@
 <kernel 
     module="kern_sync" 
     ldap.uri="ldap://127.0.0.1:389" 
-    ldap.bind_dn="uid=omobus-agentd,ou=services,dc=omobus,dc=local"
+    ldap.bind_dn="uid=omobusd,ou=services,dc=omobus,dc=local"
     ldap.bind_pw="0"
     ldap.base="ou=proxy-storages,dc=omobus,dc=local" 
     ldap.filter="(&amp;(objectClass=omobusMaintainPoint)(exchangeStatus=enabled))"
@@ -13,13 +13,16 @@
     ftp.connect_timeout="30"
     ftp.recv_timeout="15"
     ftp.send_timeout="15"
-    ftp.epsv="true"
-    pk.cache="d2o/"
-    pk.mode="bz2"
-    pk.compress_level="9"
-    Xpk.enc="utf-8"
-    pk.diff="yes"
-    Xpk.thr="3"
+    ftp.epsv="yes"
+    ftp.tls="no"
+    ftp.ccc="no"
+    ftp.cdc="no"
+    pack.type="bz2"
+    pack.level="9"
+    Xpack.encoding="utf-8"
+    cache="d2o/"
+    diff="yes"
+    Xthreads="2"
     >
 <queries>
 <xi:include href="../queries/d2o/TTD.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -78,7 +81,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 </int__users>
 <!-- **** FILTERS: END **** -->
 </queries>
-<pk>
+<pack Xstrict="yes" Xtrace="yes">
     <TTD />
     <accounts />
     <brands />
@@ -133,5 +136,5 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<stocks_history key="wareh_id" />
 	<wareh_stocks key="wareh_id" />
     </warehouses>
-</pk>
+</pack>
 </kernel>

@@ -1,5 +1,0 @@
-# This is a configuration file for /etc/init.d/omobus-agentd; it allows you to
-# perform common modifications to the behavior of the omobus-agentd daemon
-# startup without editing the init script.
-
-INSTANCES="o2d d2o dc:high dc:low angel gc"

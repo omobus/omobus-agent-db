@@ -3,7 +3,7 @@
 # Author: Igor Artemov <i_artemov@ak-obs.ru>.
 
 PACKAGE_NAME 	= omobus-agent-db
-PACKAGE_VERSION = 3.3.14
+PACKAGE_VERSION = 3.3.15
 COPYRIGHT 	= Copyright (c) 2006 - 2017 ak obs, ltd. <info@omobus.net>
 SUPPORT 	= Support and bug reports: <support@omobus.net>
 AUTHOR		= Author: Igor Artemov <i_artemov@ak-obs.ru>
@@ -19,7 +19,7 @@ DISTR_NAME	= $(PACKAGE_NAME)-$(PACKAGE_VERSION)
 
 distr:
 	$(INSTALL) -d $(DISTR_NAME)
-	$(INSTALL) -m 0644 *.xconf *.conf *.sql *.ldif omobus-agentd.* Makefile* ChangeLog AUTHO* COPY* README* ./$(DISTR_NAME)
+	$(INSTALL) -m 0644 *.xconf *.conf *.sql *.ldif omobusd.* Makefile* ChangeLog AUTHO* COPY* README* ./$(DISTR_NAME)
 	$(CP) -r connections/ ./$(DISTR_NAME)/connections
 	$(CP) -r transactions/ ./$(DISTR_NAME)/transactions
 	$(CP) -r kernels/ ./$(DISTR_NAME)/kernels

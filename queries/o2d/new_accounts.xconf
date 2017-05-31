@@ -2,7 +2,7 @@
 <new_accounts templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%new_account_type_id%;%doc_note%;%account%;%legal_address%;%address%;%number%;%attr_ids%;">
 <check_exist>
   <![CDATA[
-select count(*) qty from new_accounts 
+select count(*) exist from new_accounts 
     where doc_id = '%doc_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

@@ -8,7 +8,7 @@ update payment_methods set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from payment_methods 
+select count(*) exist from payment_methods 
     where payment_method_id = '%payment_method_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

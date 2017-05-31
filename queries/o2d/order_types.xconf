@@ -8,7 +8,7 @@ update order_types set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from order_types 
+select count(*) exist from order_types 
     where order_type_id = '%order_type_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

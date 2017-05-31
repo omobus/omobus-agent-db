@@ -2,7 +2,7 @@
 <orders templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%order_type_id%;%group_price_id%;%wareh_id%;%delivery_date%;%delivery_note%;%doc_note%;%payment_method_id%;%payment_delay%;%bonus%;%order_param_ids%;%rows%;%prod_id%;%row_no%;%pack_id%;%pack%;%qty%;%unit_price%;%discount%;%amount%;%weight%;%volume%;">
 <check_exist>
   <![CDATA[
-select count(*) qty from orders 
+select count(*) exist from orders 
     where doc_id = '%doc_id%' and prod_id = '%prod_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

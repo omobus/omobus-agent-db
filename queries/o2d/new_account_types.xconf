@@ -8,7 +8,7 @@ update new_account_types set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from new_account_types 
+select count(*) exist from new_account_types 
     where new_account_type_id = '%new_account_type_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

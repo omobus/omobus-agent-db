@@ -2,7 +2,7 @@
 <comments templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%comment_type_id%;%doc_note%;">
 <check_exist>
   <![CDATA[
-select count(*) qty from comments 
+select count(*) exist from comments 
     where doc_id = '%doc_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

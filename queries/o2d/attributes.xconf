@@ -8,7 +8,7 @@ update attributes set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from attributes 
+select count(*) exist from attributes 
     where attr_id = '%attr_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

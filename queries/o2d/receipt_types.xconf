@@ -8,7 +8,7 @@ update receipt_types set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from receipt_types 
+select count(*) exist from receipt_types 
     where receipt_type_id = '%receipt_type_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

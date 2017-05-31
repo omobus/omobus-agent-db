@@ -2,7 +2,7 @@
 <receipts templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%receipt_type_id%;%doc_note%;%amount%;">
 <check_exist>
   <![CDATA[
-select count(*) qty from receipts 
+select count(*) exist from receipts 
     where doc_id = '%doc_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

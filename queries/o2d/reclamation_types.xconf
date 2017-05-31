@@ -8,7 +8,7 @@ update reclamation_types set hidden=1
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from reclamation_types 
+select count(*) exist from reclamation_types 
     where reclamation_type_id = '%reclamation_type_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

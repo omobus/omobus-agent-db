@@ -8,7 +8,7 @@ delete from symlinks
 </begin>
 <check_exist>
   <![CDATA[
-select count(*) qty from symlinks
+select count(*) exist from symlinks
     where obj_code = '%obj_code%' and f_id = '%f_id%' and db_id = '%ErpCode%'
   ]]>
 </check_exist>

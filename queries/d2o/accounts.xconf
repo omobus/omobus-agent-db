@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accounts templ="%account_id%;%pid%;%code%;%ftype%;%descr%;%address%;%rc_id%;%chan_id%;%poten_id%;" empty="no">
+<accounts templ="%account_id%;%pid%;%ftype%;%code%;%descr%;%address%;%rc_id%;%chan_id%;%poten_id%;" empty="no">
   <![CDATA[
 select account_id, pid, code, ftype, descr, address, rc_id, chan_id, poten_id from accounts
     order by 1

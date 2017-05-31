@@ -94,8 +94,8 @@ go
 create table accounts (
     account_id 		uid_t 		not null primary key,
     pid 		uid_t 		null,
-    code 		code_t 		null,
     ftype 		ftype_t 	not null default 0,
+    code 		code_t 		null,
     descr 		descr_t 	not null,
     address 		address_t 	not null,
     rc_id 		uid_t		null, 		/* -> retail_chains */
@@ -257,6 +257,16 @@ create table packs (
     primary key (pack_id, prod_id)
 )
 
+create table permitted_returns ( 
+    account_id 		uid_t  		not null,
+    prod_id    		uid_t  		not null,
+    pack_id 		uid_t 		not null,
+    price 		currency_t 	null check (price is null or price >= 0),
+    max_qty 		numeric_t      	null check (max_qty is null or (max_qty >= 0)),
+    locked 		bool_t 		null default 0,
+    primary key (account_id, prod_id)
+);
+
 create table potentials (
     poten_id 		uid_t 		not null primary key,
     descr 		descr_t 	not null
@@ -276,17 +286,6 @@ create table products (
     obsolete 		bool_t 		null,
     novelty 		bool_t 		null,
     promo 		bool_t 		null
-);
-
-create table refunds ( 
-    account_id 		uid_t  		not null,
-    prod_id    		uid_t  		not null,
-    pack_id 		uid_t 		not null,
-    price 		currency_t 	null check (price is null or price >= 0),
-    max_qty 		numeric_t      	null check (max_qty is null or (max_qty >= 0)),
-    locked 		bool_t 		null default 0,
-    percentage 		numeric(7,1) 	null, /* percentage of returned products */
-    primary key (account_id, prod_id)
 );
 
 create table retail_chains (
@@ -310,10 +309,10 @@ create table sales_history (
     s_date 		date_t 		not null,
     amount_c 		currency_t 	null,
     pack_c_id 		uid_t 		null,
-    qty_c 		int32_t 	null,
+    qty_c 		numeric_t 	null,
     amount_r 		currency_t 	null,
     pack_r_id 		uid_t 		null,
-    qty_r 		int32_t 	null,
+    qty_r 		numeric_t 	null,
     extra_info 		note_t 		null,
     primary key (account_id, prod_id, s_date)
 );
@@ -462,7 +461,6 @@ create table new_accounts (
     legal_address 	address_t 	null,
     number 		code_t 		null,
     new_account_type_id uid_t 		null,
-    --photo 		blob_t 		null,
     attr_ids 		uids_t 		null,
     inserted_ts 	ts_t 		not null default current_timestamp,
     erp_id 		uid_t 		null, -- exported to the ERP

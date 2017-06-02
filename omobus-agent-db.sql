@@ -178,7 +178,6 @@ create table erp_docs (
     ivoice_no 		uid_t 		null,
     discount 		currency_t 	not null,
     vat 		currency_t 	not null,
-    vat_rate 		int32_t 	not null,
     primary key (doc_id, erp_id)
 );
 
@@ -192,6 +191,7 @@ create table erp_products (
     amount 		currency_t 	not null,
     price 		currency_t 	not null,
     vat 		currency_t 	not null,
+    vat_rate 		int32_t 	not null,
     primary key (doc_id, erp_id, prod_id)
 );
 

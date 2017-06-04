@@ -29,6 +29,7 @@
 <xi:include href="../queries/d2o/accounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/account_params.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/account_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/d2o/auto_orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/blacklist.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/brands.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/categories.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -100,6 +101,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	    <group_prices key="group_price_id" />
 	</account_params>
 	<account_prices key="account_id" />
+	<auto_orders key="account_id" />
 	<blacklist key="account_id" />
 	<debts key="account_id" />
 	<discounts key="account_id" />
@@ -114,6 +116,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
     </int__accounts>
     <int__products personalize="ErpCode">
 	<account_prices key="prod_id" />
+	<auto_orders key="prod_id" />
 	<blacklist key="prod_id" />
 	<discounts key="prod_id" />
 	<erp_products key="prod_id" />

@@ -5,10 +5,12 @@
 declare @offset int
 select @offset=cast(param_value as int) from sysparams where param_id='gc:keep_alive'
 /* cleanups obsolete documents */
-delete from comments where inserted_ts < (getdate() - @offset) --and erp_id is not null
-delete from orders where inserted_ts < (getdate() - @offset) --and erp_id is not null
-delete from receipts where inserted_ts < (getdate() - @offset) --and erp_id is not null
-delete from reclamations where inserted_ts < (getdate() - @offset) --and erp_id is not null
+delete from adjustments where inserted_ts < (getdate() - @offset)
+delete from comments where inserted_ts < (getdate() - @offset)
+delete from orders where inserted_ts < (getdate() - @offset)
+delete from receipts where inserted_ts < (getdate() - @offset)
+delete from reclamations where inserted_ts < (getdate() - @offset)
+delete from TTD where inserted_ts < (getdate() - @offset)
   ]]>
 </gc>
 </kernel>

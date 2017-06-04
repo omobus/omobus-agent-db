@@ -119,6 +119,18 @@ create table account_prices (
     primary key (account_id, prod_id)
 );
 
+create table auto_orders (
+    erp_id 		uid_t 		not null,
+    account_id 		uid_t 		not null,
+    delivery_date 	date_t 		not null,
+    prod_id 		uid_t 		not null,
+    pack_id 		uid_t 		not null,
+    qty 		numeric_t 	not null,
+    min_qty 		numeric_t 	not null,
+    max_qty 		numeric_t 	not null,
+    primary key (erp_id, prod_id)
+);
+
 create table blacklist (
     account_id 		uid_t 		not null,
     prod_id 		uid_t 		not null,
@@ -370,6 +382,25 @@ go
 -- **** OMOBUS -> ERP streams ****
 
 
+create table adjustments (
+    db_id 		uid_t 		not null,
+    doc_id 		uid_t 		not null,
+    fix_dt 		datetime_t 	not null,
+    doc_no 		uid_t 		not null,
+    user_id 		uid_t 		not null,
+    dev_login 		uid_t 		not null,
+    account_id 		uid_t 		not null,
+    erp_id 		uid_t 		not null,
+    delivery_date 	date_t 		not null,
+    rows 		int32_t 	not null,
+    prod_id 		uid_t 		not null,
+    row_no 		int32_t 	not null check (row_no >= 0),
+    pack_id 		uid_t 		not null,
+    pack 		numeric_t 	not null,
+    qty 		numeric_t 	not null,
+    primary key (db_id, doc_id, erp_id, prod_id)
+);
+
 create table attributes (
     db_id 		uid_t 		not null,
     attr_id 		uid_t 		not null,
@@ -444,7 +475,6 @@ create table comments (
     comment_type_id 	uid_t 		not null,
     doc_note 		note_t 		null,
     inserted_ts 	ts_t 		not null default current_timestamp,
-    erp_id 		uid_t 		null, -- exported to the ERP
     primary key (db_id, doc_id)
 );
 
@@ -463,7 +493,6 @@ create table new_accounts (
     new_account_type_id uid_t 		null,
     attr_ids 		uids_t 		null,
     inserted_ts 	ts_t 		not null default current_timestamp,
-    erp_id 		uid_t 		null, -- exported to the ERP
     primary key (db_id, doc_id)
 );
 
@@ -497,7 +526,6 @@ create table orders (
     weight 		weight_t 	not null,
     volume 		volume_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
-    erp_id 		uid_t 		null, -- exported to the ERP
     primary key (db_id, doc_id, prod_id)
 );
 
@@ -513,7 +541,6 @@ create table receipts (
     doc_note 		note_t 		null,
     amount 		numeric_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
-    erp_id 		uid_t 		null, -- exported to the ERP
     primary key (db_id, doc_id)
 );
 
@@ -539,7 +566,6 @@ create table reclamations (
     weight 		weight_t 	not null,
     volume 		volume_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
-    erp_id 		uid_t 		null, -- exported to the ERP
     primary key (db_id, doc_id, prod_id)
 );
 
@@ -547,6 +573,14 @@ go
 
 
 -- **** System tables and procedures ****
+
+create table TTD (
+    db_id 		uid_t 		not null,
+    doc_id 		uid_t 		not null,
+    erp_id 		uid_t 		null, -- exported to the ERP
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key(db_id, doc_id)
+);
 
 create table symlinks (
     db_id 		uid_t 		not null,
@@ -577,7 +611,6 @@ create table sysparams (
 
 insert into sysparams values('db:id', 'L1', 'omobus-agent-db internal code.');
 insert into sysparams values('gc:keep_alive', '30', 'How many days the data will be hold from cleaning.');
-insert into sysparams values('ttd', 'oninsert', 'Generates TTD stream when documents inserted to the omobus-agent-db (oninsert) or to the ERP (onerpid).');
 insert into sysparams values('erp:db', 'dummy', 'ERP database name.');
 insert into sysparams values('erp:lock', 'false', 'Locks ERP database.');
 
@@ -632,12 +665,38 @@ as
 begin
     SET NOCOUNT ON;
     SET ANSI_PADDING ON;
+    declare @db_id uid_t, @doc_id uid_t, @c cursor;
     if dbo.sp_obj_checklock() > 0
 	print 'ERP is locked!'
---* else
---* begin
---*	-- Write documents to the ERP.
---* end
+    else
+	begin
+	    -- TODO: writes document(s) to the ERP.
+	
+            -- writes document(s) to the TTD (Transfered-to-Distributor):
+	    set @c = cursor scroll for 
+		select x.db_id, x.doc_id from (
+		    select distinct db_id, doc_id from ajustments
+			union
+		    select distinct db_id, doc_id from comments
+			union
+		    select distinct db_id, doc_id from orders
+			union
+		    select distinct db_id, doc_id from receipts
+			union
+		    select distinct db_id, doc_id from reclamations
+		) x left join TTD t on x.db_id=t.db_id and x.doc_id=t.doc_id
+		    where t.db_id is null
+
+	    open @c
+	    fetch next from @c into @db_id, @doc_id
+
+	    while @@FETCH_STATUS = 0
+		begin
+		    exec sp_ttd @db_id, @doc_id, null
+		    fetch next from @c into @db_id, @doc_id
+		end
+	    close @c
+	end
 end
 
 go
@@ -668,6 +727,23 @@ begin
 --* begin
 --*	-- Read manuals from the ERP.
 --* end
+end
+
+go
+
+create procedure sp_ttd @db_id uid_t, @doc_id uid_t, @erp_id uid_t
+as
+begin
+    SET NOCOUNT ON;
+    SET ANSI_PADDING ON;
+    if (select count(*) from TTD where db_id=@db_id and doc_id=@doc_id) = 0 
+	begin
+	    insert into TTD(db_id, doc_id, erp_id) values(@db_id, @doc_id, @erp_id)
+	end
+    else if @erp_id is not null /*and (select count(*) from TTD where db_id=@db_id and doc_id=@doc_id and erp_id is null) = 0*/
+	begin
+	    update TTD set erp_id=@erp_id where db_id=@db_id and doc_id=@doc_id
+	end
 end
 
 go

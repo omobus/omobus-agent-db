@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<warnings templ="%account_id%;%doc_type%;%locked%;%msg%;" empty="no">
+<warnings templ="%account_id%;%doc_type%;%locked%;%msg%;" empty="yes">
   <![CDATA[
 select account_id, doc_type, locked, msg from warnings
     order by 1

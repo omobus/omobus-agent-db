@@ -31,16 +31,12 @@
 <xi:include href="../queries/d2o/account_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/auto_orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/blacklist.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/brands.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/categories.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/channels.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/constants.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/debts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/discounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/erp_docs.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/erp_products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/group_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/manufacturers.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals_history_products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -48,10 +44,8 @@
 <xi:include href="../queries/d2o/order_params.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/packs.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/permitted_returns.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/potentials.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/restrictions.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/retail_chains.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/sales_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/std_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/stocks_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -85,16 +79,10 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 <pack Xstrict="yes" Xtrace="yes">
     <TTD />
     <accounts />
-    <brands />
-    <categories />
-    <channels />
     <constants />
-    <manufacturers />
     <order_params />
-    <potentials />
     <packs />
     <products />
-    <retail_chains />
     <symlinks personalize="ErpCode"/>
     <int__accounts personalize="ErpCode">
 	<account_params key="account_id">

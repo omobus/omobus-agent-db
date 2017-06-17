@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<restrictions templ="%account_id%;%prod_id%;%pack_id%;%min_qty%;%max_qty%;" empty="no">
+<restrictions templ="%account_id%;%prod_id%;%pack_id%;%min_qty%;%max_qty%;" empty="yes">
   <![CDATA[
 select account_id, prod_id, pack_id, min_qty, max_qty from restrictions
     order by 1, 2

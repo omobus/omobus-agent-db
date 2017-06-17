@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<auto_orders templ="%erp_id%;%account_id%;%delivery_date%;%prod_id%;%pack_id%;%qty%;%min_qty%;%max_qty%;" empty="no">
+<auto_orders templ="%erp_id%;%account_id%;%delivery_date%;%prod_id%;%pack_id%;%qty%;%min_qty%;%max_qty%;" empty="yes">
   <![CDATA[
 select erp_id, account_id, delivery_date, prod_id, pack_id, qty, min_qty, max_qty from auto_orders
     order by 1, 2, 3, 4

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manufacturers templ="%manuf_id%;%descr%;" empty="no">
-  <![CDATA[
-select manuf_id, descr from manufacturers
-    order by 1
-  ]]> 
-</manufacturers>

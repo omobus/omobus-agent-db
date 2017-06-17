@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packs templ="%pack_id%;%prod_id%;%descr%;%pack%;%weight%;%volume%;%precision%;" empty="no">
+<packs templ="%pack_id%;%prod_id%;%descr%;%pack%;%weight%;%volume%;%precision%;" empty="yes">
   <![CDATA[
 select pack_id, prod_id, descr, pack, weight, volume, "precision" from packs
     where ltrim(rtrim(prod_id)) <> '' and ltrim(rtrim(pack_id)) <> '' and ltrim(rtrim(descr)) <> '' and pack <> 0

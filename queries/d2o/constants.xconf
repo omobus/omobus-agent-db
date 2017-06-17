@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<constants templ="%const_id%;%value%;" empty="no">
+<constants templ="%const_id%;%value%;" empty="yes">
   <![CDATA[
 select const_id, "value" from constants
     where ltrim(rtrim("value")) <> ''

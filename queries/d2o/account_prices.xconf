@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<account_prices templ="%account_id%;%prod_id%;%pack_id%;%price%;" empty="no">
+<account_prices templ="%account_id%;%prod_id%;%pack_id%;%price%;" empty="yes">
   <![CDATA[
 select account_id, prod_id, pack_id, price from account_prices
     order by 1, 2

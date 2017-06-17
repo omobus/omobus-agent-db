@@ -97,10 +97,7 @@ create table accounts (
     ftype 		ftype_t 	not null default 0,
     code 		code_t 		null,
     descr 		descr_t 	not null,
-    address 		address_t 	not null,
-    rc_id 		uid_t		null, 		/* -> retail_chains */
-    chan_id 		uid_t 		null,
-    poten_id 		uid_t 		null
+    address 		address_t 	not null
 );
 
 create table account_params (
@@ -138,21 +135,6 @@ create table blacklist (
     primary key (account_id, prod_id)
 );
 
-create table brands (
-    brand_id 		uid_t 		not null primary key,
-    descr 		descr_t 	not null
-);
-
-create table categories (
-    categ_id 		uid_t 		not null primary key,
-    descr 		descr_t 	not null
-);
-
-create table channels (
-    chan_id 		uid_t 		not null primary key,
-    descr 		descr_t 	not null
-);
-
 create table constants (
     const_id 		uid_t 		not null primary key, -- mutuals:date, debts:date, wareh_stocks:date
     value 		varchar(64) 	not null
@@ -177,8 +159,8 @@ create table discounts (
 );
 
 create table erp_docs (
-    doc_id 		uid_t 		not null,
-    erp_id 		uid_t 		not null,
+    doc_id 		uid_t 		null,
+    erp_id 		uid_t 		not null primary key,
     pid 		uid_t 		null, /* parent erp_id */
     erp_no 		uid_t 		not null,
     erp_dt 		datetime_t 	not null,
@@ -189,12 +171,11 @@ create table erp_docs (
     waybill_no 		uid_t 		null,
     ivoice_no 		uid_t 		null,
     discount 		currency_t 	not null,
-    vat 		currency_t 	not null,
-    primary key (doc_id, erp_id)
+    vat 		currency_t 	not null
 );
 
 create table erp_products (
-    doc_id 		uid_t 		not null,
+    doc_id 		uid_t 		null,
     erp_id 		uid_t 		not null,
     prod_id 		uid_t 		not null,
     pack_id 		uid_t 		not null,
@@ -204,7 +185,7 @@ create table erp_products (
     price 		currency_t 	not null,
     vat 		currency_t 	not null,
     vat_rate 		int32_t 	not null,
-    primary key (doc_id, erp_id, prod_id)
+    primary key (erp_id, prod_id)
 );
 
 create table group_prices (
@@ -213,11 +194,6 @@ create table group_prices (
     pack_id 		uid_t 		not null,
     price 		currency_t 	not null,
     primary key (group_price_id, prod_id)
-);
-
-create table manufacturers (
-    manuf_id 		uid_t 		not null primary key,
-    descr 		descr_t 	null
 );
 
 create table my_accounts (
@@ -279,31 +255,12 @@ create table permitted_returns (
     primary key (account_id, prod_id)
 );
 
-create table potentials (
-    poten_id 		uid_t 		not null primary key,
-    descr 		descr_t 	not null
-);
-
 create table products (
     prod_id 		uid_t 		not null primary key,
     pid 		uid_t 		null,
     ftype 		ftype_t 	not null default 0,
-    manuf_id 		uid_t 		null,
-    brand_id 		uid_t 		null,
-    categ_id 		uid_t 		null,
     code 		code_t 		null,
-    descr 		descr_t 	not null,
-    art 		art_t 		null,
-    shelf_life 		descr_t 	null,
-    obsolete 		bool_t 		null,
-    novelty 		bool_t 		null,
-    promo 		bool_t 		null
-);
-
-create table retail_chains (
-    rc_id		uid_t		not null primary key,
-    descr 		descr_t 	not null,
-    ka_code		code_t		null
+    descr 		descr_t 	not null
 );
 
 create table restrictions (
@@ -351,9 +308,7 @@ create table users (
     user_id		uid_t		not null primary key,
     pid			uid_t		null,
     ftype		ftype_t		not null default 0,
-    descr		descr_t		not null,
-    code		code_t		null,
-    role 		code_t 		null -- check (role in ('merch','sr','mr','sv','ise','cde','asm','rsm') and role = lower(role)),
+    descr		descr_t		not null
 );
 
 create table warehouses (
@@ -398,6 +353,7 @@ create table adjustments (
     pack_id 		uid_t 		not null,
     pack 		numeric_t 	not null,
     qty 		numeric_t 	not null,
+    inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, doc_id, erp_id, prod_id)
 );
 
@@ -675,7 +631,7 @@ begin
             -- writes document(s) to the TTD (Transfered-to-Distributor):
 	    set @c = cursor scroll for 
 		select x.db_id, x.doc_id from (
-		    select distinct db_id, doc_id from ajustments
+		    select distinct db_id, doc_id from adjustments
 			union
 		    select distinct db_id, doc_id from comments
 			union

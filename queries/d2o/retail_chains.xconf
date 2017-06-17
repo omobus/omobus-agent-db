@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<retail_chains templ="%rc_id%;%descr%;" empty="no">
-  <![CDATA[
-select rc_id, descr from retail_chains
-    order by 1
-  ]]> 
-</retail_chains>

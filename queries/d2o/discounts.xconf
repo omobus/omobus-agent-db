@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<discounts templ="%account_id%;%prod_id%;%discount%;%min_discount%;%max_discount%;" empty="no">
+<discounts templ="%account_id%;%prod_id%;%discount%;%min_discount%;%max_discount%;" empty="yes">
   <![CDATA[
 select account_id, prod_id, discount, min_discount, max_discount from discounts
     order by 1, 2

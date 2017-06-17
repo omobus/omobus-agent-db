@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<brands templ="%brand_id%;%descr%;%dep_id%;" empty="no">
-  <![CDATA[
-select brand_id, descr, null dep_id from brands
-    order by 1
-  ]]> 
-</brands>

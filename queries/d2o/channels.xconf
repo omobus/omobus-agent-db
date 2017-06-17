@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<channels templ="%chan_id%;%descr%;" empty="no">
-  <![CDATA[
-select chan_id, descr from channels
-    order by 1
-  ]]> 
-</channels>

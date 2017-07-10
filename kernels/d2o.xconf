@@ -98,7 +98,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<mutuals_history key="account_id">
 	    <mutuals_history_products key="erp_id" />
 	</mutuals_history>
-	<refunds key="account_id" />
 	<restrictions key="account_id" />
 	<sales_history key="account_id" />
     </int__accounts>
@@ -110,7 +109,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<erp_products key="prod_id" />
 	<group_prices key="prod_id" />
 	<mutuals_history_products key="prod_id" />
-	<refunds key="prod_id" />
 	<restrictions key="prod_id" />
 	<sales_history key="prod_id" />
 	<std_prices key="prod_id" />

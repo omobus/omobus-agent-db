@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<orders templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%order_type_id%;%group_price_id%;%wareh_id%;%delivery_date%;%delivery_note%;%doc_note%;%payment_method_id%;%payment_delay%;%bonus%;%order_param_ids%;%rows%;%prod_id%;%row_no%;%pack_id%;%pack%;%qty%;%unit_price%;%discount%;%amount%;%weight%;%volume%;">
+<orders templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%account_id%;%order_type_id%;%group_price_id%;%wareh_id%;%delivery_date%;%delivery_type_id%;%delivery_note%;%doc_note%;%payment_method_id%;%payment_delay%;%bonus%;%encashment%;%order_param_ids%;%rows%;%prod_id%;%row_no%;%pack_id%;%pack%;%qty%;%unit_price%;%discount%;%amount%;%weight%;%volume%;">
 <check_exist>
   <![CDATA[
 select count(*) exist from orders 
@@ -8,8 +8,8 @@ select count(*) exist from orders
 </check_exist>
 <insert>
   <![CDATA[
-insert into orders (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, account_id, order_type_id, group_price_id, wareh_id, delivery_date, delivery_note, doc_note, payment_method_id, payment_delay, bonus, order_param_ids, rows, prod_id, row_no, pack_id, pack, qty, unit_price, discount, amount, weight, volume) 
-    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%account_id%', '%order_type_id%', '%group_price_id%', '%wareh_id%', '%delivery_date%', '%delivery_note%', '%doc_note%', '%payment_method_id%', 0%payment_delay%, 0%bonus%, '%order_param_ids%', %rows%, '%prod_id%', %row_no%, '%pack_id%', %pack%, %qty%, %unit_price%, 0%discount%, %amount%, %weight%, %volume%)
+insert into orders (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, account_id, order_type_id, group_price_id, wareh_id, delivery_date, delivery_type_id, delivery_note, doc_note, payment_method_id, payment_delay, bonus, encashment, order_param_ids, rows, prod_id, row_no, pack_id, pack, qty, unit_price, discount, amount, weight, volume) 
+    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%account_id%', '%order_type_id%', '%group_price_id%', '%wareh_id%', '%delivery_date%', case when '%delivery_type_id%'='' then null else '%delivery_type_id%' end, '%delivery_note%', '%doc_note%', '%payment_method_id%', 0%payment_delay%, case when '%bonus%'='' then null else 0%bonus% end, case when '%encashment%'='' then null else 0%encashment% end, case when '%order_param_ids%'='' then null else '%order_param_ids%' end, %rows%, '%prod_id%', %row_no%, '%pack_id%', %pack%, %qty%, %unit_price%, 0%discount%, %amount%, %weight%, %volume%)
   ]]>
 </insert>
 </orders>

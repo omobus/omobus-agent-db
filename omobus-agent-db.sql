@@ -57,6 +57,8 @@ alter database "omobus-agent-db" set ANSI_PADDING on
 alter database "omobus-agent-db" set QUOTED_IDENTIFIER on 
 alter database "omobus-agent-db" set concat_null_yields_null on
 go
+alter database "omobus-agent-db" set RECOVERY SIMPLE
+go
 -- **** mssql 2005 and higher ****
 alter database "omobus-agent-db" set ALLOW_SNAPSHOT_ISOLATION on
 go
@@ -105,7 +107,8 @@ create table account_params (
     group_price_id 	uid_t 		null,
     locked 		bool_t 		null default 0,
     payment_delay 	int32_t 	null,
-    payment_method_id 	uid_t 		null
+    payment_method_id 	uid_t 		null,
+    wareh_ids 		uids_t 		null
 );
 
 create table account_prices (
@@ -375,6 +378,15 @@ create table comment_types (
     primary key (db_id, comment_type_id)
 );
 
+create table delivery_types (
+    db_id 		uid_t 		not null,
+    delivery_type_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, delivery_type_id)
+);
+
 create table new_account_types (
     db_id 		uid_t 		not null,
     new_account_type_id uid_t 		not null,
@@ -464,11 +476,13 @@ create table orders (
     group_price_id 	uid_t 		null,
     wareh_id 		uid_t 		null,
     delivery_date 	date_t 		not null,
+    delivery_type_id 	uid_t 		null,
     delivery_note 	note_t 		null,
     doc_note 		note_t 		null,
     payment_method_id 	uid_t 		null,
     payment_delay 	int32_t 	null check (payment_delay is null or (payment_delay >= 0)),
-    bonus 		int32_t 	null check (bonus is null or (bonus >= 0)),
+    bonus 		currency_t 	null check (bonus is null or (bonus >= 0)),
+    encashment 		currency_t 	null check (encashment is null or (encashment >= 0)),
     order_param_ids 	uids_t		null, /* order_params array; delimiter ',' */
     rows 		int32_t 	not null,
     prod_id 		uid_t 		not null,

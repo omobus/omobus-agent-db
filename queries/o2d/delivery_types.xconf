@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<delivery_types templ="%delivery_type_id%;%descr%;">
+<begin>
+  <![CDATA[
+update delivery_types set hidden=1
+    where db_id = '%ErpCode%'
+  ]]>
+</begin>
+<check_exist>
+  <![CDATA[
+select count(*) exist from delivery_types 
+    where delivery_type_id = '%delivery_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</check_exist>
+<update>
+  <![CDATA[
+update delivery_types set descr='%descr%', hidden=0 
+    where delivery_type_id = '%delivery_type_id%' and db_id = '%ErpCode%'
+  ]]>
+</update>
+<insert>
+  <![CDATA[
+insert into delivery_types (db_id, delivery_type_id, descr, hidden) 
+    values ('%ErpCode%', '%delivery_type_id%', '%descr%', 0)
+  ]]>
+</insert>
+</delivery_types>

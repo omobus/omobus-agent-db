@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<products templ="%prod_id%;%pid%;%ftype%;%code%;%descr%;" empty="yes">
+<products templ="%prod_id%;%code%;%descr%;" empty="yes">
   <![CDATA[
-select prod_id, pid, ftype, code, descr from products
+select prod_id, code, descr from products
     order by 1
   ]]>
 </products>

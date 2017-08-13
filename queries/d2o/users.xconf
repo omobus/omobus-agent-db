@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<users templ="%user_id%;%pid%;%ftype%;%descr%;" empty="yes">
+<users templ="%user_id%;%descr%;" empty="yes">
   <![CDATA[
-select user_id, pid, ftype, descr from users
+select user_id, descr from users
     order by 1
   ]]>
 </users>

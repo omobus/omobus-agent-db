@@ -76,7 +76,6 @@ execute sp_addtype datetime_t, 'varchar(19)'
 execute sp_addtype descr_t, 'varchar(256)'
 execute sp_addtype doctype_t, 'varchar(16)'
 execute sp_addtype discount_t, 'numeric(5,2)'
-execute sp_addtype ftype_t, 'smallint', 'not null'
 execute sp_addtype int32_t, 'int'
 execute sp_addtype int64_t, 'numeric(10)'
 execute sp_addtype note_t, 'varchar(1024)'
@@ -95,8 +94,6 @@ go
 
 create table accounts (
     account_id 		uid_t 		not null primary key,
-    pid 		uid_t 		null,
-    ftype 		ftype_t 	not null default 0,
     code 		code_t 		null,
     descr 		descr_t 	not null,
     address 		address_t 	not null
@@ -260,8 +257,6 @@ create table permitted_returns (
 
 create table products (
     prod_id 		uid_t 		not null primary key,
-    pid 		uid_t 		null,
-    ftype 		ftype_t 	not null default 0,
     code 		code_t 		null,
     descr 		descr_t 	not null
 );
@@ -309,8 +304,6 @@ create table stocks_history (
 
 create table users (
     user_id		uid_t		not null primary key,
-    pid			uid_t		null,
-    ftype		ftype_t		not null default 0,
     descr		descr_t		not null
 );
 

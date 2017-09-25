@@ -333,6 +333,33 @@ go
 -- **** OMOBUS -> ERP streams ****
 
 
+create table additions (
+    db_id 		uid_t 		not null,
+    doc_id 		uid_t 		not null,
+    fix_dt 		datetime_t 	not null,
+    doc_no 		uid_t 		not null,
+    user_id 		uid_t 		not null,
+    dev_login 		uid_t 		not null,
+    doc_note 		note_t 		null,
+    account 		descr_t 	null,
+    address 		address_t 	null,
+    legal_address 	address_t 	null,
+    number 		code_t 		null,
+    addition_type_id 	uid_t 		null,
+    attr_ids 		uids_t 		null,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, doc_id)
+);
+
+create table addition_types (
+    db_id 		uid_t 		not null,
+    addition_type_id uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, addition_type_id)
+);
+
 create table adjustments (
     db_id 		uid_t 		not null,
     doc_id 		uid_t 		not null,
@@ -362,6 +389,20 @@ create table attributes (
     primary key (db_id, attr_id)
 );
 
+create table comments (
+    db_id 		uid_t 		not null,
+    doc_id 		uid_t 		not null,
+    fix_dt 		datetime_t 	not null,
+    doc_no 		uid_t 		not null,
+    user_id 		uid_t 		not null,
+    dev_login 		uid_t 		not null,
+    account_id 		uid_t 		not null,
+    comment_type_id 	uid_t 		not null,
+    doc_note 		note_t 		null,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, doc_id)
+);
+
 create table comment_types (
     db_id 		uid_t 		not null,
     comment_type_id 	uid_t 		not null,
@@ -378,83 +419,6 @@ create table delivery_types (
     hidden 		bool_t 		not null default 0,
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, delivery_type_id)
-);
-
-create table new_account_types (
-    db_id 		uid_t 		not null,
-    new_account_type_id uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, new_account_type_id)
-);
-
-create table order_types (
-    db_id 		uid_t 		not null,
-    order_type_id 	uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, order_type_id)
-);
-
-create table payment_methods (
-    db_id 		uid_t 		not null,
-    payment_method_id 	uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, payment_method_id)
-);
-
-create table receipt_types (
-    db_id 		uid_t 		not null,
-    receipt_type_id 	uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, receipt_type_id)
-);
-
-create table reclamation_types (
-    db_id 		uid_t 		not null,
-    reclamation_type_id uid_t 		not null,
-    descr 		descr_t 	null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, reclamation_type_id)
-);
-
-create table comments (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    comment_type_id 	uid_t 		not null,
-    doc_note 		note_t 		null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id)
-);
-
-create table new_accounts (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    doc_note 		note_t 		null,
-    account 		descr_t 	null,
-    address 		address_t 	null,
-    legal_address 	address_t 	null,
-    number 		code_t 		null,
-    new_account_type_id uid_t 		null,
-    attr_ids 		uids_t 		null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id)
 );
 
 create table orders (
@@ -492,6 +456,24 @@ create table orders (
     primary key (db_id, doc_id, prod_id)
 );
 
+create table order_types (
+    db_id 		uid_t 		not null,
+    order_type_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, order_type_id)
+);
+
+create table payment_methods (
+    db_id 		uid_t 		not null,
+    payment_method_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, payment_method_id)
+);
+
 create table receipts (
     db_id 		uid_t 		not null,
     doc_id 		uid_t 		not null,
@@ -505,6 +487,15 @@ create table receipts (
     amount 		numeric_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, doc_id)
+);
+
+create table receipt_types (
+    db_id 		uid_t 		not null,
+    receipt_type_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, receipt_type_id)
 );
 
 create table reclamations (
@@ -530,6 +521,15 @@ create table reclamations (
     volume 		volume_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, doc_id, prod_id)
+);
+
+create table reclamation_types (
+    db_id 		uid_t 		not null,
+    reclamation_type_id uid_t 		not null,
+    descr 		descr_t 	null,
+    hidden 		bool_t 		not null default 0,
+    inserted_ts 	ts_t 		not null default current_timestamp,
+    primary key (db_id, reclamation_type_id)
 );
 
 go

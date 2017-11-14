@@ -32,6 +32,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-insert into sysparams(param_id, param_value, descr) values('db:vstamp', '3.3.20', 'Database version number.');
+insert into sysparams(param_id, param_value, descr) values('db:vstamp', '3.3.21', 'Database version number.');
 
 go

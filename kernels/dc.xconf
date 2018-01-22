@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kernel module="kern_tasks">
+<dc.high ontimeout="yes" onsemaphore="no">
+  <![CDATA[
+exec sp_trig_d2o_highpriority
+  ]]>
+</dc.high>
+<dc.low ontimeout="no" onsemaphore="yes">
+  <![CDATA[
+exec sp_trig_d2o_lowpriority
+  ]]>
+</dc.low>
+</kernel>

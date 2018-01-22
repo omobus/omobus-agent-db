@@ -1,0 +1,3 @@
+# /etc/cron.d/omobusd: omobus crond rules.
+
+0 1-23/3 * * * root /usr/local/bin/omobus-event dc

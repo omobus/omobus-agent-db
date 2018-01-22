@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<kernel module="kern_tasks">
-<dc.high>
-  <![CDATA[
-exec sp_trig_d2o_highpriority
-  ]]>
-</dc.high>
-</kernel>

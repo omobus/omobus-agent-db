@@ -80,7 +80,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
     <TTD />
     <accounts />
     <constants />
-    <order_params />
+    <order_params personalize="ErpCode" />
     <packs />
     <products />
     <symlinks personalize="ErpCode"/>

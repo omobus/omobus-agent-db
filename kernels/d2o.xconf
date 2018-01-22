@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <kernel 
     module="kern_sync" 
-    ldap.uri="ldap://127.0.0.1:389" 
-    ldap.bind_dn="uid=omobusd,ou=services,dc=omobus,dc=local"
+    ldap.uri="ldap://gateway.omobus.net:389" 
+    ldap.bind_dn="uid=dummy,ou=distributors,dc=omobus,dc=local"
     ldap.bind_pw="0"
-    ldap.base="ou=proxy-storages,dc=omobus,dc=local" 
+    ldap.base="uid=dummy,ou=distributors,dc=omobus,dc=local" 
     ldap.filter="(&amp;(objectClass=omobusMaintainPoint)(exchangeStatus=enabled))"
     Xldap.tls="yes"
-    ftp.host="dummy.omobus.net"
+    ftp.host="gateway.omobus.net"
     ftp.port="21021"
     ftp.path="d2o/"
     ftp.connect_timeout="30"

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This file is a part of the omobus-agent-db project.
-# Copyright (c) 2006 - 2017 ak-obs, Ltd. <info@omobus.net>.
+# Copyright (c) 2006 - 2018 ak-obs, Ltd. <info@omobus.net>.
 # All rights reserved.
 #
 # This program is a free software. Redistribution and use in source

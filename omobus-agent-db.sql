@@ -230,8 +230,10 @@ create table mutuals_history_products (
 );
 
 create table order_params (
-    order_param_id 	uid_t 		not null primary key,
-    descr 		descr_t 	not null
+    db_id 		uid_t 		not null,
+    order_param_id 	uid_t 		not null,
+    descr 		descr_t 	not null,
+    primary key (db_id, order_param_id)
 );
 
 create table packs (
@@ -553,17 +555,6 @@ create table symlinks (
     extra_info 		note_t 		null,
     reverse 		bool_t 		not null default 1, -- 1 -> mapping table are controlled at the distributor side.
     primary key(db_id, obj_code, f_id)
-);
-
-create table sysmeta( /* without primary key */
-    ext_tab 		varchar(64) 	null,
-    ext_col 		varchar(64) 	null,
-    int_tab 		varchar(64) 	null,
-    int_col 		varchar(64) 	null,
-    u 			bool_t 		not null default 0,
-    i 			bool_t 		not null default 0,
-    doc_type 		doctype_t 	null,
-    erp_descr 		descr_t 	null
 );
 
 create table sysparams (

@@ -1,0 +1,14 @@
+[Unit]
+Description=OMOBUS agent service (angel)
+After=local-fs.target network.target
+
+[Service]
+#Type=forking
+PIDFile=/var/run/omobus.d/omobus-angel.pid
+ExecStartPre=/bin/mkdir -m 0755 -p /var/run/omobus.d
+ExecStartPre=/bin/chown omobus:omobus /var/run/omobus.d
+ExecStart=/usr/local/sbin/omobusd angel -x -u omobus -g omobus -p /var/run/omobus.d/omobus-angel.pid
+ExecStop=/bin/kill -s USR1 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

@@ -40,7 +40,6 @@
 <xi:include href="../queries/d2o/mutuals_history_products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/d2o/my_accounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/order_params.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/packs.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/permitted_returns.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -93,7 +92,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<blacklist key="account_id" />
 	<debts key="account_id" />
 	<discounts key="account_id" />
-	<my_accounts key="account_id" />
 	<mutuals key="account_id" />
 	<mutuals_history key="account_id">
 	    <mutuals_history_products key="erp_id" />

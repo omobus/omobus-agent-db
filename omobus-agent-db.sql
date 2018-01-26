@@ -196,12 +196,6 @@ create table group_prices (
     primary key (group_price_id, prod_id)
 );
 
-create table my_accounts (
-    user_id 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    primary key (user_id, account_id)
-);
-
 create table mutuals (
     account_id 		uid_t 		not null primary key,
     mutual 		currency_t 	not null

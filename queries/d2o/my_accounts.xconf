@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<my_accounts templ="%user_id%;%account_id%;" empty="yes">
-  <![CDATA[ 
-select user_id, account_id from my_accounts
-    order by 1, 2
-  ]]>
-</my_accounts>

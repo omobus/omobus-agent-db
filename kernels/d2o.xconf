@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <kernel 
     module="kern_sync" 
-    ldap.uri="ldap://gateway.omobus.net:389" 
+    ldap.uri="ldaps://gateway.omobus.net:636" 
     ldap.bind_dn="uid=dummy,ou=distributors,dc=omobus,dc=local"
     ldap.bind_pw="0"
     ldap.base="uid=dummy,ou=distributors,dc=omobus,dc=local" 
@@ -14,7 +14,7 @@
     ftp.recv_timeout="15"
     ftp.send_timeout="15"
     ftp.epsv="yes"
-    ftp.tls="no"
+    ftp.tls="yes"
     ftp.ccc="no"
     ftp.cdc="no"
     pack.type="bz2"

@@ -35,7 +35,7 @@
 /* ** omobus-agent-db database schema.
  * **
  * ** ATTENTION: This database schema is used only for direct connection 
- * ** distributors to the omobus cloud server.
+ * ** distributors to the omobus server.
  * **
  */
 
@@ -343,6 +343,7 @@ create table additions (
     number 		code_t 		null,
     addition_type_id 	uid_t 		null,
     attr_ids 		uids_t 		null,
+    account_id 		uid_t 		null,
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, doc_id)
 );

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<additions templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%addition_type_id%;%doc_note%;%account%;%legal_address%;%address%;%number%;%attr_ids%;">
+<additions templ="%doc_id%;%fix_dt%;%doc_no%;%user_id%;%dev_login%;%addition_type_id%;%doc_note%;%account%;%legal_address%;%address%;%number%;%attr_ids%;%account_id%;">
 <check_exist>
   <![CDATA[
 select count(*) exist from additions 
@@ -8,8 +8,8 @@ select count(*) exist from additions
 </check_exist>
 <insert>
   <![CDATA[
-insert into additions (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, addition_type_id, doc_note, account, address, legal_address, number, attr_ids) 
-    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%addition_type_id%', '%doc_note%', '%account%', '%address%', '%legal_address%', 0%number%, '%attr_ids%')
+insert into additions (db_id, doc_id, fix_dt, doc_no, user_id, dev_login, addition_type_id, doc_note, account, address, legal_address, number, attr_ids, account_id) 
+    values ('%ErpCode%', '%doc_id%', '%fix_dt%', '%doc_no%', '%user_id%', '%dev_login%', '%addition_type_id%', '%doc_note%', '%account%', '%address%', '%legal_address%', 0%number%, '%attr_ids%', '%account_id%')
   ]]>
 </insert>
 </additions>

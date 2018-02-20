@@ -329,34 +329,6 @@ go
 -- **** OMOBUS -> ERP streams ****
 
 
-create table additions (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    doc_note 		note_t 		null,
-    account 		descr_t 	null,
-    address 		address_t 	null,
-    legal_address 	address_t 	null,
-    number 		code_t 		null,
-    addition_type_id 	uid_t 		null,
-    attr_ids 		uids_t 		null,
-    account_id 		uid_t 		null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id)
-);
-
-create table addition_types (
-    db_id 		uid_t 		not null,
-    addition_type_id uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, addition_type_id)
-);
-
 create table adjustments (
     db_id 		uid_t 		not null,
     doc_id 		uid_t 		not null,
@@ -375,38 +347,6 @@ create table adjustments (
     qty 		numeric_t 	not null,
     inserted_ts 	ts_t 		not null default current_timestamp,
     primary key (db_id, doc_id, erp_id, prod_id)
-);
-
-create table attributes (
-    db_id 		uid_t 		not null,
-    attr_id 		uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, attr_id)
-);
-
-create table comments (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    comment_type_id 	uid_t 		not null,
-    doc_note 		note_t 		null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id)
-);
-
-create table comment_types (
-    db_id 		uid_t 		not null,
-    comment_type_id 	uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, comment_type_id)
 );
 
 create table delivery_types (

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mutuals templ="%account_id%;%mutual%;" empty="yes">
+<mutuals templ="%account_id%;%mutual%;">
   <![CDATA[ 
 select account_id, mutual from mutuals
     where mutual <> 0

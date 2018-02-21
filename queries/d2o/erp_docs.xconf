@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<erp_docs templ="%doc_id%;%erp_id%;%pid%;%erp_no%;%erp_dt%;%amount%;%status%;%doc_type%;%delivery_date%;%waybill_no%;%ivoice_no%;%discount%;%vat%;" empty="yes">
+<erp_docs templ="%doc_id%;%erp_id%;%pid%;%erp_no%;%erp_dt%;%amount%;%status%;%doc_type%;%delivery_date%;%waybill_no%;%ivoice_no%;%discount%;%vat%;">
   <![CDATA[
 select doc_id, erp_id, pid, erp_no, erp_dt, amount, status, doc_type, delivery_date, waybill_no, ivoice_no, discount, vat from erp_docs
     order by 1, 2

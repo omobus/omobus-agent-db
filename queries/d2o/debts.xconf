@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<debts templ="%account_id%;%debt%;" empty="yes">
+<debts templ="%account_id%;%debt%;">
   <![CDATA[ 
 select account_id, debt from debts
     where debt > 0

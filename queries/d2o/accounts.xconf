@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accounts templ="%account_id%;%code%;%descr%;%address%;" empty="yes">
+<accounts templ="%account_id%;%code%;%descr%;%address%;">
   <![CDATA[
 select account_id, code, descr, address from accounts
     order by 1

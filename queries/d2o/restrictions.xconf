@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<restrictions templ="%account_id%;%prod_id%;%pack_id%;%min_qty%;%max_qty%;" empty="yes">
+<restrictions templ="%account_id%;%prod_id%;%pack_id%;%min_qty%;%max_qty%;%quantum%;">
   <![CDATA[
-select account_id, prod_id, pack_id, min_qty, max_qty from restrictions
+select account_id, prod_id, pack_id, min_qty, max_qty, quantum from restrictions
     order by 1, 2
   ]]>
 </restrictions>

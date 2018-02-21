@@ -261,8 +261,9 @@ create table restrictions (
     account_id 		uid_t 		not null,
     prod_id 		uid_t 		not null,
     pack_id 		uid_t 		not null,
-    min_qty 		numeric_t 	null check (min_qty is null or (min_qty >= 0)),
-    max_qty 		numeric_t 	null check (max_qty is null or (max_qty >= 0)),
+    min_qty 		numeric_t 	null check (min_qty is null or min_qty >= 0),
+    max_qty 		numeric_t 	null check (max_qty is null or max_qty >= 0),
+    quantum 		int32_t 	null check (quantum is null or quantum > 0),
     primary key (account_id, prod_id)
 );
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shipments templ="%account_id%;%d_date%;">
+  <![CDATA[ 
+select account_id, d_date from shipments
+    order by 1, 2
+  ]]>
+</shipments>

@@ -46,6 +46,7 @@
 <xi:include href="../queries/d2o/products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/restrictions.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/sales_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/d2o/shipments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/std_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/stocks_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -98,6 +99,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	</mutuals_history>
 	<restrictions key="account_id" />
 	<sales_history key="account_id" />
+	<shipments key="account_id" />
     </int__accounts>
     <int__products personalize="ErpCode">
 	<account_prices key="prod_id" />

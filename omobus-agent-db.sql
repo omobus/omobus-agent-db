@@ -263,7 +263,7 @@ create table restrictions (
     pack_id 		uid_t 		not null,
     min_qty 		numeric_t 	null check (min_qty is null or min_qty >= 0),
     max_qty 		numeric_t 	null check (max_qty is null or max_qty >= 0),
-    quantum 		int32_t 	null check (quantum is null or quantum > 0),
+    quantum 		numeric_t 	null check (quantum is null or quantum > 0),
     primary key (account_id, prod_id)
 );
 
@@ -279,6 +279,12 @@ create table sales_history (
     qty_r 		numeric_t 	null,
     extra_info 		note_t 		null,
     primary key (account_id, prod_id, s_date)
+);
+
+create table shipments (
+    account_id 		uid_t 		not null,
+    d_date 		date_t 		not null,
+    primary key (account_id, d_date)
 );
 
 create table std_prices (

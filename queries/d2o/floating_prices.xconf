@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<floating_prices templ="%account_id%;%prod_id%;%pack_id%;%price%;%b_date%;%e_date%;%promo%;">
+  <![CDATA[
+select account_id, prod_id, pack_id, price, b_date, e_date from floating_prices
+    order by 1, 2, b_date
+  ]]>
+</floating_prices>

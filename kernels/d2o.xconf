@@ -36,6 +36,7 @@
 <xi:include href="../queries/d2o/discounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/erp_docs.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/erp_products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/d2o/floating_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/group_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals_history_products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/d2o/mutuals_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -93,6 +94,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<blacklist key="account_id" />
 	<debts key="account_id" />
 	<discounts key="account_id" />
+	<floating_prices key="account_id" />
 	<mutuals key="account_id" />
 	<mutuals_history key="account_id">
 	    <mutuals_history_products key="erp_id" />
@@ -107,6 +109,7 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<blacklist key="prod_id" />
 	<discounts key="prod_id" />
 	<erp_products key="prod_id" />
+	<floating_prices key="prod_id" />
 	<group_prices key="prod_id" />
 	<mutuals_history_products key="prod_id" />
 	<restrictions key="prod_id" />

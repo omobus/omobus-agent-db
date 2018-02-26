@@ -188,6 +188,17 @@ create table erp_products (
     primary key (erp_id, prod_id)
 );
 
+create table floating_prices (
+    account_id 		uid_t 		not null,
+    prod_id 		uid_t 		not null,
+    pack_id 		uid_t 		not null,
+    price 		currency_t 	not null,
+    b_date 		date_t 		not null,
+    e_date 		date_t 		not null,
+    promo 		bool_t 		null,
+    primary key (account_id, prod_id, b_date)
+);
+
 create table group_prices (
     group_price_id 	uid_t 		not null,
     prod_id 		uid_t 		not null,

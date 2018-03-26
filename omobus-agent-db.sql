@@ -492,14 +492,6 @@ go
 
 -- **** System tables and procedures ****
 
-create table TTD (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    erp_id 		uid_t 		null, -- exported to the ERP
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key(db_id, doc_id)
-);
-
 create table symlinks (
     db_id 		uid_t 		not null,
     obj_code 		code_t 		not null, -- (product|account|user|...)
@@ -575,35 +567,10 @@ begin
     declare @db_id uid_t, @doc_id uid_t, @c cursor;
     if dbo.sp_obj_checklock() > 0
 	print 'ERP is locked!'
-    else
-	begin
-	    -- TODO: writes document(s) to the ERP.
-	
-            -- writes document(s) to the TTD (Transfered-to-Distributor):
-	    set @c = cursor scroll for 
-		select x.db_id, x.doc_id from (
-		    select distinct db_id, doc_id from adjustments
-			union
-		    select distinct db_id, doc_id from comments
-			union
-		    select distinct db_id, doc_id from orders
-			union
-		    select distinct db_id, doc_id from receipts
-			union
-		    select distinct db_id, doc_id from reclamations
-		) x left join TTD t on x.db_id=t.db_id and x.doc_id=t.doc_id
-		    where t.db_id is null
-
-	    open @c
-	    fetch next from @c into @db_id, @doc_id
-
-	    while @@FETCH_STATUS = 0
-		begin
-		    exec sp_ttd @db_id, @doc_id, null
-		    fetch next from @c into @db_id, @doc_id
-		end
-	    close @c
-	end
+--* else
+--* begin
+--*	-- TODO: writes document(s) to the ERP.
+--* end
 end
 
 go
@@ -634,23 +601,6 @@ begin
 --* begin
 --*	-- Read manuals from the ERP.
 --* end
-end
-
-go
-
-create procedure sp_ttd @db_id uid_t, @doc_id uid_t, @erp_id uid_t
-as
-begin
-    SET NOCOUNT ON;
-    SET ANSI_PADDING ON;
-    if (select count(*) from TTD where db_id=@db_id and doc_id=@doc_id) = 0 
-	begin
-	    insert into TTD(db_id, doc_id, erp_id) values(@db_id, @doc_id, @erp_id)
-	end
-    else if @erp_id is not null /*and (select count(*) from TTD where db_id=@db_id and doc_id=@doc_id and erp_id is null) = 0*/
-	begin
-	    update TTD set erp_id=@erp_id where db_id=@db_id and doc_id=@doc_id
-	end
 end
 
 go

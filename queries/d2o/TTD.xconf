@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TTD templ="%doc_id%;%ttd_dt%;" empty="no">
+<TTD templ="%doc_id%;" empty="no">
   <![CDATA[
-select doc_id, convert(varchar(19), inserted_ts, 121) ttd_dt, erp_id from TTD 
-    order by 1, 2
+select doc_id from adjustments
+    union
+select doc_id from orders
+    union
+select doc_id from receipts
+    union
+select doc_id from reclamations
+    order by 1
   ]]>
 </TTD>

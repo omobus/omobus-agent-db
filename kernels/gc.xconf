@@ -9,7 +9,6 @@ delete from adjustments where inserted_ts < (getdate() - @offset)
 delete from orders where inserted_ts < (getdate() - @offset)
 delete from receipts where inserted_ts < (getdate() - @offset)
 delete from reclamations where inserted_ts < (getdate() - @offset)
-delete from TTD where inserted_ts < (getdate() - @offset)
   ]]>
 </gc>
 </kernel>

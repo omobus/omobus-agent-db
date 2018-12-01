@@ -136,13 +136,9 @@ create table blacklist (
 );
 
 create table constants (
-    const_id 		uid_t 		not null primary key, -- mutuals:date, debts:date, wareh_stocks:date
-    value 		varchar(64) 	not null
+    const_id 		uid_t 		not null primary key,
+    "value" 		date_t 		not null
 );
-
-insert into constants values('mutuals:date', '');
-insert into constants values('debts:date', '');
-insert into constants values('wareh_stocks:date', '');
 
 create table debts (
     account_id 		uid_t 		not null primary key,

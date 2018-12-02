@@ -1,13 +1,13 @@
 [Unit]
-Description=OMOBUS agent service (o2d)
+Description=OMOBUS agent service (docs)
 After=local-fs.target network.target
 
 [Service]
 #Type=forking
-PIDFile=/var/run/omobus.d/omobus-o2d.pid
+PIDFile=/var/run/omobus.d/omobus-docs.pid
 ExecStartPre=/bin/mkdir -m 0755 -p /var/run/omobus.d
 ExecStartPre=/bin/chown omobus:omobus /var/run/omobus.d
-ExecStart=/usr/local/sbin/omobusd o2d -x -u omobus -g omobus -p /var/run/omobus.d/omobus-o2d.pid
+ExecStart=/usr/local/sbin/omobusd docs -x -u omobus -g omobus -p /var/run/omobus.d/omobus-docs.pid
 ExecStop=/bin/kill -s USR1 $MAINPID
 
 [Install]

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kernel
+    module="kern_import"
+    ldap.uri="ldaps://gateway.omobus.net:636"
+    ldap.bind_dn="uid=dummy,ou=distributors,dc=omobus,dc=local"
+    ldap.bind_pw="0"
+    ldap.base="uid=dummy,ou=distributors,dc=omobus,dc=local"
+    ldap.filter="(&amp;(objectClass=omobusMaintainPoint)(exchangeStatus=enabled))" 
+    Xldap.tls="yes"
+    ftp.host="gateway.omobus.net"
+    ftp.port="21021"
+    ftp.path="docs/"
+    ftp.connect_timeout="30"
+    ftp.recv_timeout="15"
+    ftp.send_timeout="15"
+    ftp.epsv="yes"
+    ftp.tls="yes"
+    ftp.ccc="no"
+    ftp.cdc="no"
+    Xpack.encoding="utf-8"
+    pack.gc="4"
+    cache="agent/docs/"
+    >
+<xi:include href="../queries/docs/trig_after.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+
+<xi:include href="../queries/docs/adjustments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/delivery_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/order_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/payment_methods.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/receipts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/receipt_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/reclamations.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/reclamation_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+</kernel>

@@ -102,7 +102,6 @@ create table accounts (
 create table account_params (
     account_id 		uid_t 		not null primary key,
     group_price_id 	uid_t 		null,
-    locked 		bool_t 		null default 0,
     payment_delay 	int32_t 	null,
     payment_method_id 	uid_t 		null,
     wareh_ids 		uids_t 		null
@@ -320,14 +319,6 @@ create table wareh_stocks (
     prod_id 		uid_t 		not null,
     qty 		int32_t 	not null,
     primary key (wareh_id, prod_id)
-);
-
-create table warnings (
-    account_id 		uid_t 		not null,
-    doc_type 		doctype_t 	not null, -- order, reclamation
-    locked 		bool_t 		not null default 1,
-    msg 		varchar(1024)	null,
-    primary key (account_id, doc_type)
 );
 
 go

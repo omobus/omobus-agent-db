@@ -54,7 +54,6 @@
 <xi:include href="../queries/data/users.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/warehouses.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/wareh_stocks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/data/warnings.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 
 <!-- **** FILTERS: BEGIN **** -->
 <int__accounts>

@@ -155,33 +155,26 @@ create table discounts (
 );
 
 create table erp_docs (
-    doc_id 		uid_t 		null,
-    erp_id 		uid_t 		not null primary key,
+    doc_id 		uid_t 		not null,
+    erp_id 		uid_t 		not null,
     pid 		uid_t 		null, /* parent erp_id */
     erp_no 		uid_t 		not null,
     erp_dt 		datetime_t 	not null,
     amount 		currency_t 	not null,
     status 		int32_t 	not null default 0 check (status between -1 and 1), -- -1 - delete, 0 - normal, 1 - closed
-    doc_type 		doctype_t 	not null, -- order, reclamation, contract, shipment, return, movement
-    delivery_date 	date_t 		null,
-    waybill_no 		uid_t 		null,
-    ivoice_no 		uid_t 		null,
-    discount 		currency_t 	not null,
-    vat 		currency_t 	not null
+    doc_type 		doctype_t 	not null, -- order, reclamation, contract
+    primary key (doc_id, erp_id)
 );
 
 create table erp_products (
-    doc_id 		uid_t 		null,
+    doc_id 		uid_t 		not null,
     erp_id 		uid_t 		not null,
     prod_id 		uid_t 		not null,
     pack_id 		uid_t 		not null,
     qty 		numeric_t 	not null,
     discount 		discount_t 	not null,
     amount 		currency_t 	not null,
-    price 		currency_t 	not null,
-    vat 		currency_t 	not null,
-    vat_rate 		int32_t 	not null,
-    primary key (erp_id, prod_id)
+    primary key (doc_id, erp_id, prod_id)
 );
 
 create table floating_prices (

@@ -73,6 +73,7 @@ execute sp_addtype code_t, 'varchar(32)'
 execute sp_addtype currency_t, 'numeric(18,4)'
 execute sp_addtype date_t, 'varchar(10)'
 execute sp_addtype datetime_t, 'varchar(19)'
+execute sp_addtype datetimetz_t, 'varchar(32)'
 execute sp_addtype descr_t, 'varchar(256)'
 execute sp_addtype doctype_t, 'varchar(16)'
 execute sp_addtype discount_t, 'numeric(5,2)'
@@ -91,6 +92,11 @@ go
 
 
 -- **** ERP -> OMOBUS streams ****
+
+create table "RDD" (
+    obj_code 		code_t 		not null primary key,
+    r_date 		datetimetz_t 	not null
+);
 
 create table accounts (
     account_id 		uid_t 		not null primary key,
@@ -132,11 +138,6 @@ create table blacklist (
     prod_id 		uid_t 		not null,
     locked 		bool_t 		null,
     primary key (account_id, prod_id)
-);
-
-create table constants (
-    const_id 		uid_t 		not null primary key,
-    "value" 		date_t 		not null
 );
 
 create table debts (
@@ -492,6 +493,7 @@ insert into sysparams values('db:id', 'L1', 'omobus-agent-db internal code.');
 insert into sysparams values('gc:keep_alive', '30', 'How many days the data will be hold from cleaning.');
 insert into sysparams values('erp:db', 'dummy', 'ERP database name.');
 insert into sysparams values('erp:lock', 'false', 'Locks ERP database.');
+insert into sysparams values('db:vstamp', '', 'Database version number.');
 
 go 
 

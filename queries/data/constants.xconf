@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<constants templ="%const_id%;%value%;">
-  <![CDATA[
-select const_id, "value" from constants
-    where ltrim(rtrim("value")) <> ''
-order by 1
-  ]]> 
-</constants>

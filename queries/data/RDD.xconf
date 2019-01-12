@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RDD templ="%obj_code%;%r_date%;">
+  <![CDATA[
+select obj_code, r_date from "RDD"
+    where ltrim(rtrim(r_date)) <> ''
+order by 1
+  ]]> 
+</RDD>

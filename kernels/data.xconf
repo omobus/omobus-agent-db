@@ -30,7 +30,6 @@
 <xi:include href="../queries/data/accounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/account_params.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/account_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/data/auto_orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/blacklist.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/debts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/discounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -49,7 +48,6 @@
 <xi:include href="../queries/data/sales_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/shipments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/std_prices.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-<xi:include href="../queries/data/stocks_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/users.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/warehouses.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -89,7 +87,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	    <group_prices key="group_price_id" />
 	</account_params>
 	<account_prices key="account_id" />
-	<auto_orders key="account_id" />
 	<blacklist key="account_id" />
 	<debts key="account_id" />
 	<discounts key="account_id" />
@@ -104,7 +101,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
     </my_accounts>
     <my_products personalize="ErpCode">
 	<account_prices key="prod_id" />
-	<auto_orders key="prod_id" />
 	<blacklist key="prod_id" />
 	<discounts key="prod_id" />
 	<erp_products key="prod_id" />
@@ -114,7 +110,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<restrictions key="prod_id" />
 	<sales_history key="prod_id" />
 	<std_prices key="prod_id" />
-	<stocks_history key="prod_id" />
 	<wareh_stocks key="prod_id" />
     </my_products>
     <my_users personalize="ErpCode">
@@ -124,7 +119,6 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 	<erp_products key="erp_id" />
     </erp_docs>
     <warehouses>
-	<stocks_history key="wareh_id" />
 	<wareh_stocks key="wareh_id" />
     </warehouses>
 </pack>

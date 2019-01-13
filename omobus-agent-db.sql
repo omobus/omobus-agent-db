@@ -121,18 +121,6 @@ create table account_prices (
     primary key (account_id, prod_id)
 );
 
-create table auto_orders (
-    erp_id 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    delivery_date 	date_t 		not null,
-    prod_id 		uid_t 		not null,
-    pack_id 		uid_t 		not null,
-    qty 		numeric_t 	not null,
-    min_qty 		numeric_t 	not null,
-    max_qty 		numeric_t 	not null,
-    primary key (erp_id, prod_id)
-);
-
 create table blacklist (
     account_id 		uid_t 		not null,
     prod_id 		uid_t 		not null,
@@ -293,18 +281,6 @@ create table std_prices (
     price 		currency_t 	not null
 );
 
-create table stocks_history (
-    wareh_id 		uid_t 		not null,
-    prod_id 		uid_t 		not null,
-    s_date 		date_t 		not null,
-    damaged 		bool_t 		not null,
-    b_qty 		int32_t 	not null default 0,
-    e_qty 		int32_t 	not null default 0,
-    i_qty 		int32_t 	not null default 0,
-    o_qty 		int32_t 	not null default 0,
-    primary key (wareh_id, prod_id, s_date, damaged)
-);
-
 create table users (
     user_id		uid_t		not null primary key,
     descr		descr_t		not null
@@ -327,26 +303,6 @@ go
 
 -- **** OMOBUS -> ERP streams ****
 
-
-create table adjustments (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    erp_id 		uid_t 		not null,
-    delivery_date 	date_t 		not null,
-    rows 		int32_t 	not null,
-    prod_id 		uid_t 		not null,
-    row_no 		int32_t 	not null check (row_no >= 0),
-    pack_id 		uid_t 		not null,
-    pack 		numeric_t 	not null,
-    qty 		numeric_t 	not null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id, erp_id, prod_id)
-);
 
 create table delivery_types (
     db_id 		uid_t 		not null,

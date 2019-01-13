@@ -21,9 +21,6 @@
     pack.gc="4"
     cache="agent/docs/"
     >
-<xi:include href="../queries/docs/trig_after.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
-
-<xi:include href="../queries/docs/adjustments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/docs/delivery_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/docs/orders.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/docs/order_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -33,4 +30,5 @@
 <xi:include href="../queries/docs/reclamations.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/docs/reclamation_types.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/docs/symlinks.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/docs/trig_after.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 </kernel>

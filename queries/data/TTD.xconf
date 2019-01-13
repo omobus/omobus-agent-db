@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TTD templ="%doc_id%;" empty="no">
   <![CDATA[
-select doc_id from adjustments
-    union
 select doc_id from orders
     union
 select doc_id from receipts

@@ -25,7 +25,6 @@
     Xthreads="2"
     >
 <queries>
-<xi:include href="../queries/data/RDD.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/TTD.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/accounts.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/account_params.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -44,6 +43,7 @@
 <xi:include href="../queries/data/packs.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/permitted_returns.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/products.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
+<xi:include href="../queries/data/rdd.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/restrictions.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/sales_history.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
 <xi:include href="../queries/data/shipments.xconf" xmlns:xi="http://www.w3.org/2003/XInclude" />
@@ -75,12 +75,12 @@ select db_id person_id, t_id user_id from symlinks where obj_code='user' and t_i
 <!-- **** FILTERS: END **** -->
 </queries>
 <pack Xstrict="yes" Xtrace="yes">
-    <RDD />
     <TTD />
     <accounts />
     <order_params personalize="ErpCode" />
     <packs />
     <products />
+    <rdd personalize="ErpCode" />
     <symlinks personalize="ErpCode"/>
     <my_accounts personalize="ErpCode">
 	<account_params key="account_id">

@@ -93,11 +93,6 @@ go
 
 -- **** ERP -> OMOBUS streams ****
 
-create table "RDD" (
-    obj_code 		code_t 		not null primary key,
-    r_date 		datetimetz_t 	not null
-);
-
 create table accounts (
     account_id 		uid_t 		not null primary key,
     code 		code_t 		null,
@@ -243,6 +238,11 @@ create table products (
     prod_id 		uid_t 		not null primary key,
     code 		code_t 		null,
     descr 		descr_t 	not null
+);
+
+create table rdd (
+    obj_code 		code_t 		not null primary key,
+    r_date 		datetimetz_t 	not null
 );
 
 create table restrictions (

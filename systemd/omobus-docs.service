@@ -1,5 +1,5 @@
 [Unit]
-Description=OMOBUS agent service (docs)
+Description=[omobusd: agent-docs] service
 After=local-fs.target network.target
 
 [Service]

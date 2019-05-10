@@ -1,5 +1,5 @@
 [Unit]
-Description=OMOBUS agent service (angel)
+Description=[omobusd: agent-angel] service
 After=local-fs.target network.target
 
 [Service]

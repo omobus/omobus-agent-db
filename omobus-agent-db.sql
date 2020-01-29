@@ -226,7 +226,6 @@ create table sales_history (
     amount_r 		currency_t 	null,
     pack_r_id 		uid_t 		null,
     qty_r 		numeric_t 	null,
-    extra_info 		note_t 		null,
     primary key (account_id, prod_id, s_date)
 );
 
@@ -395,7 +394,6 @@ create table symlinks (
     obj_code 		code_t 		not null, -- (product|account|user|...)
     f_id 		uid_t 		not null,
     t_id 		uid_t 		not null,
-    extra_info 		note_t 		null,
     reverse 		bool_t 		not null default 1, -- 1 -> mapping table are controlled at the distributor side.
     primary key(db_id, obj_code, f_id)
 );

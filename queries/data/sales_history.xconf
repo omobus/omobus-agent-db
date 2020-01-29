@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sales_history templ="%account_id%;%prod_id%;%s_date%;%amount_c%;%pack_c_id%;%qty_c%;%amount_r%;%pack_r_id%;%qty_r%;%extra_info%;">
+<sales_history templ="%account_id%;%prod_id%;%s_date%;%amount_c%;%pack_c_id%;%qty_c%;%amount_r%;%pack_r_id%;%qty_r%;">
   <![CDATA[
-select account_id, prod_id, s_date, amount_c, pack_c_id, qty_c, amount_r, pack_r_id, qty_r, extra_info from sales_history
+select account_id, prod_id, s_date, amount_c, pack_c_id, qty_c, amount_r, pack_r_id, qty_r from sales_history
     order by 1, 2, 3
   ]]>
 </sales_history>

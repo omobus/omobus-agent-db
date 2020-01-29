@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<symlinks templ="%obj_code%;%f_id%;%t_id%;%extra_info%;">
+<symlinks templ="%obj_code%;%f_id%;%t_id%;">
 <begin>
   <![CDATA[
 delete from symlinks
@@ -14,8 +14,8 @@ select count(*) exist from symlinks
 </check_exist>
 <insert>
   <![CDATA[
-insert into symlinks (db_id, obj_code, f_id, t_id, extra_info, reverse) 
-    values ('%ErpCode%', '%obj_code%', '%f_id%', '%t_id%', '%extra_info%', 0)
+insert into symlinks (db_id, obj_code, f_id, t_id, reverse) 
+    values ('%ErpCode%', '%obj_code%', '%f_id%', '%t_id%', 0)
   ]]>
 </insert>
 </symlinks>

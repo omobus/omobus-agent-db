@@ -153,7 +153,6 @@ create table mutuals_history (
     amount 		currency_t 	not null,
     incoming 		bool_t 		not null,
     unpaid 		currency_t 	null,
-    extra_info 		note_t 		null,
     primary key (account_id, erp_id)
 );
 

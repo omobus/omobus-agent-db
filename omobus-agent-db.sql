@@ -325,30 +325,6 @@ create table payment_methods (
     primary key (db_id, payment_method_id)
 );
 
-create table receipts (
-    db_id 		uid_t 		not null,
-    doc_id 		uid_t 		not null,
-    fix_dt 		datetime_t 	not null,
-    doc_no 		uid_t 		not null,
-    user_id 		uid_t 		not null,
-    dev_login 		uid_t 		not null,
-    account_id 		uid_t 		not null,
-    receipt_type_id 	uid_t 		null,
-    doc_note 		note_t 		null,
-    amount 		numeric_t 	not null,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, doc_id)
-);
-
-create table receipt_types (
-    db_id 		uid_t 		not null,
-    receipt_type_id 	uid_t 		not null,
-    descr 		descr_t 	not null,
-    hidden 		bool_t 		not null default 0,
-    inserted_ts 	ts_t 		not null default current_timestamp,
-    primary key (db_id, receipt_type_id)
-);
-
 create table reclamations (
     db_id 		uid_t 		not null,
     doc_id 		uid_t 		not null,

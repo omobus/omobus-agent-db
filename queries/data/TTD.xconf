@@ -3,8 +3,6 @@
   <![CDATA[
 select doc_id from orders
     union
-select doc_id from receipts
-    union
 select doc_id from reclamations
     order by 1
   ]]>

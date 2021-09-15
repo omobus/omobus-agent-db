@@ -66,7 +66,8 @@ create table account_params (
     group_price_id 	uid_t 		null,
     payment_delay 	int32_t 	null,
     payment_method_id 	uid_t 		null,
-    wareh_ids 		uids_t 		null
+    wareh_ids 		uids_t 		null,
+    locked 		bool_t 		not null default 0
 );
 
 create table account_prices (

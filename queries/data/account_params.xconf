@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<account_params templ="%account_id%;%group_price_id%;%payment_delay%;%payment_method_id%;%wareh_ids%;">
+<account_params templ="%account_id%;%group_price_id%;%payment_delay%;%payment_method_id%;%wareh_ids%;%locked%;">
   <![CDATA[
-select account_id, group_price_id, payment_delay, payment_method_id, wareh_ids from account_params
+select account_id, group_price_id, payment_delay, payment_method_id, wareh_ids, locked from account_params
     order by 1
   ]]>
 </account_params>
